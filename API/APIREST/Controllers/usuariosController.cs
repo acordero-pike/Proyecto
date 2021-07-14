@@ -20,6 +20,62 @@ namespace APIREST.Controllers
                 var usuario = (from d in db.Usuarios select d).ToList();
                 return Ok(usuario);
             }
+
+
+        }
+
+        [HttpPost]
+        public ActionResult Post([FromBody] Models.Usuario modelo)
+        {
+            using (Models.proyectoCursosContext db = new Models.proyectoCursosContext())
+            {
+                Models.Usuario usuario = new Models.Usuario();
+                usuario.Nombre = modelo.Nombre;
+                usuario.Apellido = modelo.Apellido;
+                usuario.Telefono = modelo.Telefono;
+                usuario.Correo = modelo.Correo;
+                usuario.Contraseña = modelo.Contraseña;
+
+                db.Usuarios.Add(usuario);
+                db.SaveChanges();
+            }
+            return Ok("usuario añadido correctamente");
+        }
+
+ 
+
+        [HttpDelete]
+        public ActionResult Delete([FromBody] Models.Usuario modelo)
+        {
+            using (Models.proyectoCursosContext db = new Models.proyectoCursosContext())
+            {
+                Models.Usuario usuario = db.Usuarios.Find(modelo.IdUsuario);
+                usuario.Status = false;
+
+                db.Entry(usuario).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                db.SaveChanges();
+
+            }
+            return Ok("La cuenta del usuario ha sido desactivada satisfactoriamente");
+        }
+
+        [HttpPut]
+        public ActionResult Put([FromBody] Models.Usuario modelo)
+        {
+            using (Models.proyectoCursosContext db = new Models.proyectoCursosContext())
+            {
+                Models.Usuario usuario = db.Usuarios.Find(modelo.IdUsuario);
+                usuario.Nombre = modelo.Nombre;
+                usuario.Apellido = modelo.Apellido;
+                usuario.Telefono = modelo.Telefono;
+                usuario.Correo = modelo.Correo;
+                usuario.Contraseña = modelo.Contraseña;
+
+                db.Entry(usuario).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                db.SaveChanges();
+
+            }
+            return Ok("usuario actualizado correctamente");
         }
     }
 }
