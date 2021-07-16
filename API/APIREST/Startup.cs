@@ -16,7 +16,9 @@ namespace APIREST
 {
     public class Startup
     {
+ 
         private readonly string Cors = "Token";
+ 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -35,7 +37,10 @@ namespace APIREST
             });
             services.AddCors(options =>
             {
+ 
+                 
                 options.AddPolicy(name: Cors, builder =>
+ 
                 {
                     builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
                 });
@@ -56,7 +61,9 @@ namespace APIREST
 
             app.UseRouting();
 
+ 
             app.UseCors(Cors);
+ 
 
             app.UseAuthorization();
 
