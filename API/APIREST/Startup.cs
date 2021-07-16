@@ -16,6 +16,7 @@ namespace APIREST
 {
     public class Startup
     {
+        private readonly string Cors = "Token";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -32,6 +33,13 @@ namespace APIREST
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "APIREST", Version = "v1" });
             });
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: Cors, builder =>
+                {
+                    builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +55,8 @@ namespace APIREST
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(Cors);
 
             app.UseAuthorization();
 
