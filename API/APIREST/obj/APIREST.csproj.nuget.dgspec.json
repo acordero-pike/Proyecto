@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\albin\\Desktop\\Proyecto\\API\\APIREST\\APIREST.csproj": {}
+    "C:\\Users\\louma\\OneDrive\\Escritorio\\Proyecto\\API\\APIREST\\APIREST.csproj": {}
   },
   "projects": {
-    "C:\\Users\\albin\\Desktop\\Proyecto\\API\\APIREST\\APIREST.csproj": {
+    "C:\\Users\\louma\\OneDrive\\Escritorio\\Proyecto\\API\\APIREST\\APIREST.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\albin\\Desktop\\Proyecto\\API\\APIREST\\APIREST.csproj",
+        "projectUniqueName": "C:\\Users\\louma\\OneDrive\\Escritorio\\Proyecto\\API\\APIREST\\APIREST.csproj",
         "projectName": "APIREST",
-        "projectPath": "C:\\Users\\albin\\Desktop\\Proyecto\\API\\APIREST\\APIREST.csproj",
-        "packagesPath": "C:\\Users\\albin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\albin\\Desktop\\Proyecto\\API\\APIREST\\obj\\",
+        "projectPath": "C:\\Users\\louma\\OneDrive\\Escritorio\\Proyecto\\API\\APIREST\\APIREST.csproj",
+        "packagesPath": "C:\\Users\\louma\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\louma\\OneDrive\\Escritorio\\Proyecto\\API\\APIREST\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\albin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\louma\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -67,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.204\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

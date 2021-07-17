@@ -1,6 +1,6 @@
-const requestUrl = `${URL}usuarios`
+const requestUrl = `${URL}/usuarios`
 
-const usuariosService = {
+const UserService = {
   getUsuarios() {
     return fetch(requestUrl, {
       method: "GET",
@@ -14,19 +14,19 @@ const usuariosService = {
     }).then((response) => response.json());
   },
   updateUsuario(body) {
-    console.info(body);
     return fetch(requestUrl, {
       method: "PUT",
       headers,
       body: JSON.stringify(body),
     }).then((response) => response.json());
   },
-  saveUsuario(body) {
-    console.info(body);
+  register(body) {
     return fetch(requestUrl, {
       method: "POST",
       headers,
       body: JSON.stringify(body),
-    }).then((response) => response.json());
+    })
   },
 };
+
+export default UserService;
