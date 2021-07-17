@@ -22,7 +22,6 @@ C:\Users\albin\Desktop\Proyecto\API\APIREST\bin\Debug\net5.0\Microsoft.IdentityM
 C:\Users\albin\Desktop\Proyecto\API\APIREST\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\albin\Desktop\Proyecto\API\APIREST\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\albin\Desktop\Proyecto\API\APIREST\bin\Debug\net5.0\Microsoft.OpenApi.dll
-C:\Users\albin\Desktop\Proyecto\API\APIREST\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\albin\Desktop\Proyecto\API\APIREST\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\albin\Desktop\Proyecto\API\APIREST\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\albin\Desktop\Proyecto\API\APIREST\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -59,3 +58,4 @@ C:\Users\albin\Desktop\Proyecto\API\APIREST\obj\Debug\net5.0\APIREST.dll
 C:\Users\albin\Desktop\Proyecto\API\APIREST\obj\Debug\net5.0\ref\APIREST.dll
 C:\Users\albin\Desktop\Proyecto\API\APIREST\obj\Debug\net5.0\APIREST.pdb
 C:\Users\albin\Desktop\Proyecto\API\APIREST\obj\Debug\net5.0\APIREST.genruntimeconfig.cache
+C:\Users\albin\Desktop\Proyecto\API\APIREST\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
