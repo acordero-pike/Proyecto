@@ -19,6 +19,7 @@ let cursos = [];
 const setCusosValuesToForm = (curso) => {
   const { nombre, descripcion, costo, instructor, duracion } =
     form.elements;
+console.log(curso);
   nombre.value = curso.nombre;
   descripcion.value = curso.descripcion;
   costo.value = curso.costo;
