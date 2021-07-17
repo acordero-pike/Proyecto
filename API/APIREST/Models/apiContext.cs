@@ -43,7 +43,7 @@ namespace APIREST.Models
                 entity.Property(e => e.IdCurso).HasColumnName("idCurso");
 
                 entity.Property(e => e.Costo)
-                    .HasColumnType("decimal(3, 2)")
+                    .HasColumnType("float")
                     .HasColumnName("costo");
 
                 entity.Property(e => e.Descripcion)
@@ -52,7 +52,7 @@ namespace APIREST.Models
                     .HasColumnName("descripcion");
 
                 entity.Property(e => e.Duracion)
-                    .HasColumnType("decimal(3, 2)")
+                    .HasColumnType("float")
                     .HasColumnName("duracion");
 
                 entity.Property(e => e.IdInstructor).HasColumnName("idInstructor");

@@ -35,7 +35,7 @@ fetch(url)
  
         prearray= [id] ;
         sincronizarStorage();
-          window.location.href="../Vistas/index.html"
+          window.location.href="../pr/index.html"
          
         }
       } )
@@ -69,5 +69,4 @@ function validar()
 
 function sincronizarStorage() {
   localStorage.setItem('Llave', JSON.stringify(prearray));
-
 }

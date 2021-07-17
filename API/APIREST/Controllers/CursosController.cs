@@ -24,7 +24,8 @@ namespace APIREST.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] Models.Solicitudes.CursoSolicitud modelo)
+        public ActionResult Post([FromBody] Models.Solicitudes.CursoSolicitud modelo 
+            )
         {
             using (Models.apiContext db = new Models.apiContext())
             {

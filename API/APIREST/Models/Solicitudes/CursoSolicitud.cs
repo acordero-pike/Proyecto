@@ -9,9 +9,9 @@ namespace APIREST.Models.Solicitudes
     {
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
-        public decimal Costo { get; set; }
+        public float Costo { get; set; }
         public int? IdInstructor { get; set; }
-        public decimal Duracion { get; set; }
+        public float Duracion { get; set; }
 
       
     }

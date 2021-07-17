@@ -1,5 +1,4 @@
-let prearray = [];
-let nombre ="";
+
 
 
 document.addEventListener('DOMContentLoaded', () => {
