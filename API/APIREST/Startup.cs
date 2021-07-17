@@ -15,8 +15,11 @@ namespace APIREST
 {
     public class Startup
     {
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
+ 
+ 
+        private readonly string Cors = "Token";
+ 
+ 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,27 +30,31 @@ namespace APIREST
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowSpecificOrigin", builder =>
-                    builder.AllowAnyHeader()
-                           .AllowAnyMethod()
-                           .AllowAnyOrigin()
-                );
-            });
+            
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "APIREST", Version = "v1" });
             });
+ 
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                .AddJwtBearer();
 
 
 
-
+          services.AddCors(options =>
+            {
+ 
+                 
+                options.AddPolicy(name: Cors, builder =>
+ 
+                {
+                    builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                });
+            });
+ 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,7 +70,13 @@ namespace APIREST
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            app.UseCors("AllowSpecificOrigin");
+ 
+
+ 
+            app.UseCors(Cors);
+ 
+
+ 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
