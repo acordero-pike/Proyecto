@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
    prearray.forEach( ar =>  {  nombre =ar.nombre})
 
-    document.querySelector("#logg").innerHTML=` <a class="nav-link"  style="color:white ;" href="#">${nombre}</a>
+    document.querySelector("#logg").innerHTML=` <a class="nav-link"  style="color:white ;" href="../pages/updateUser.html">${nombre}</a>
     <a class="nav-link"  style="color:white ;" id="logoff" >LogOff</a>`;
     const logoff = document.querySelector("#logoff") ;
     logoff.addEventListener('click', () => {
@@ -32,8 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 }else{
-    document.querySelector("#logg").innerHTML=` <a class="nav-link"  style="color:white ;" href="../pr/Login.html">Login </a>
-    <a class="nav-link"  style="color:white ;"   href="#">singup </a>`;
+    document.querySelector("#logg").innerHTML=` <a class="nav-link"  style="color:white ;" href="../pages/Login.html">Login </a>
+    <a class="nav-link"  style="color:white ;"   href="../pages/userRegister.html">singup </a>`;
 }
 
 

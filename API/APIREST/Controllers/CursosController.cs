@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace APIREST.Controllers
 {
+    //Debora 
     [Route("api/[controller]")]
     [ApiController]
     public class CursosController : ControllerBase
@@ -14,7 +15,7 @@ namespace APIREST.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            using (Models.apiContext db = new Models.apiContext())
+            using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
             {
                 var cursos = (from d in db.Cursos
                               select d).ToList();
@@ -27,13 +28,13 @@ namespace APIREST.Controllers
         public ActionResult Post([FromBody] Models.Solicitudes.CursoSolicitud modelo 
             )
         {
-            using (Models.apiContext db = new Models.apiContext())
+            using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
             {
                 Models.Curso cursos = new Models.Curso();
                 cursos.Nombre = modelo.Nombre;
                 cursos.Descripcion = modelo.Descripcion;
                 cursos.Costo = modelo.Costo;
-                cursos.IdInstructor = modelo.IdInstructor;
+                cursos.IdInstructor = (int)modelo.IdInstructor;
                 cursos.Duracion = modelo.Duracion;
 
                 db.Cursos.Add(cursos);
@@ -46,7 +47,7 @@ namespace APIREST.Controllers
         [HttpPut]
         public ActionResult Put([FromBody] Models.Curso modelo)
         {
-            using (Models.apiContext db = new Models.apiContext())
+            using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
             {
                 Models.Curso cursos = db.Cursos.Find(modelo.IdCurso);
                 cursos.Nombre = modelo.Nombre;
@@ -64,7 +65,7 @@ namespace APIREST.Controllers
         [HttpDelete]
         public ActionResult Delete([FromBody] Models.Curso modelo)
         {
-            using (Models.apiContext db = new Models.apiContext())
+            using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
             {
                 bool validar;
                 var query = (from r in db.Cursos where r.IdCurso == modelo.IdCurso select r).Count();
@@ -88,7 +89,7 @@ namespace APIREST.Controllers
                 }
                 else
                 {
-                    return Ok("El curso no existe");
+                    return Ok("Est Curso ya tiene participantes, no se puede eliminar");
                 }
                
             }

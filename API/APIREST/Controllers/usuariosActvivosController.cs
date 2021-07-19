@@ -14,7 +14,7 @@ namespace APIREST.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] Models.Usuario modelo)
         {
-            using (Models.proyectoCursosContext db = new Models.proyectoCursosContext())
+            using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
             {
                 Models.Usuario usuario = db.Usuarios.Find(modelo.IdUsuario);
                 usuario.Status = true;

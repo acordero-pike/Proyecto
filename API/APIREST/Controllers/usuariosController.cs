@@ -73,7 +73,7 @@ namespace APIREST.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] Models.Usuario modelo)
         {
-            using (Models.proyectoCursosContext db = new Models.proyectoCursosContext())
+            using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
             {
                 Models.Usuario usuario = new Models.Usuario();
                 usuario.Nombre = modelo.Nombre;
@@ -93,7 +93,7 @@ namespace APIREST.Controllers
         [HttpDelete]
         public ActionResult Delete([FromBody] Models.Usuario modelo)
         {
-            using (Models.proyectoCursosContext db = new Models.proyectoCursosContext())
+            using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
             {
                 Models.Usuario usuario = db.Usuarios.Find(modelo.IdUsuario);
                 usuario.Status = false;
@@ -108,7 +108,7 @@ namespace APIREST.Controllers
         [HttpPut]
         public ActionResult Put([FromBody] Models.Usuario modelo)
         {
-            using (Models.proyectoCursosContext db = new Models.proyectoCursosContext())
+            using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
             {
                 Models.Usuario usuario = db.Usuarios.Find(modelo.IdUsuario);
                 usuario.Nombre = modelo.Nombre;
