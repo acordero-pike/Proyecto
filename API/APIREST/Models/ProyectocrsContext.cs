@@ -92,6 +92,12 @@ namespace APIREST.Models
                     .HasColumnName("experienciaLab");
 
                 entity.Property(e => e.Usuario).HasColumnName("usuario");
+
+                entity.HasOne(d => d.UsuarioNavigation)
+                    .WithMany(p => p.DatosInstructors)
+                    .HasForeignKey(d => d.Usuario)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__datosInst__usuar__5AEE82B9");
             });
 
             modelBuilder.Entity<Usuario>(entity =>

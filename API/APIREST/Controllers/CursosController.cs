@@ -17,9 +17,11 @@ namespace APIREST.Controllers
         {
             using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
             {
-                var cursos = (from d in db.Cursos
-                              select d).ToList();
-                return Ok(cursos);
+
+                var query = db.Cursos.Select(g => new { Nombre=g.Nombre, Descripcion=g.Descripcion, Costo = g.Costo*1.20 , IdInstructor = g.IdInstructorNavigation.UsuarioNavigation.Nombre, Duracion = g.Duracion }).ToList(); //solo los nombres del producto con el rpecio para activar una funcion del front
+
+                 
+                return Ok(query);
             }
 
         }

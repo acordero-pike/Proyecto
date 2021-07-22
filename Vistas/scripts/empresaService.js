@@ -2,7 +2,7 @@ const headers = {
   'Accept' : "application/json",
   "Content-Type": "application/json",
 };
-const CursoService = {
+export const CursoService = {
   getCursos() {
     return fetch(URL, {
       method: "GET",
