@@ -17,8 +17,11 @@ namespace APIREST.Models
         {
         }
 
+        public virtual DbSet<Compra> Compras { get; set; }
         public virtual DbSet<Curso> Cursos { get; set; }
         public virtual DbSet<DatosInstructor> DatosInstructors { get; set; }
+        public virtual DbSet<Detalle> Detalles { get; set; }
+        public virtual DbSet<Estudiante> Estudiantes { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -33,6 +36,25 @@ namespace APIREST.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+
+            modelBuilder.Entity<Compra>(entity =>
+            {
+                entity.HasKey(e => e.IdCompra)
+                    .HasName("PK__Compra__48B99DB7AFA4FE79");
+
+                entity.ToTable("Compra");
+
+                entity.Property(e => e.IdCompra).HasColumnName("idCompra");
+
+                entity.Property(e => e.Fecha).HasColumnType("date");
+
+                entity.Property(e => e.IdEstudiante).HasColumnName("idEstudiante");
+
+                entity.HasOne(d => d.IdEstudianteNavigation)
+                    .WithMany(p => p.Compras)
+                    .HasForeignKey(d => d.IdEstudiante)
+                    .HasConstraintName("FK__Compra__idEstudi__72C60C4A");
+            });
 
             modelBuilder.Entity<Curso>(entity =>
             {
@@ -98,6 +120,45 @@ namespace APIREST.Models
                     .HasForeignKey(d => d.Usuario)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__datosInst__usuar__5AEE82B9");
+            });
+
+            modelBuilder.Entity<Detalle>(entity =>
+            {
+                entity.HasKey(e => new { e.CodCurso, e.IdCompra })
+                    .HasName("PK__Detalle__C648BBBF227C4716");
+
+                entity.ToTable("Detalle");
+
+                entity.Property(e => e.IdCompra).HasColumnName("idCompra");
+
+                entity.HasOne(d => d.CodCursoNavigation)
+                    .WithMany(p => p.Detalles)
+                    .HasForeignKey(d => d.CodCurso)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Detalle__CodCurs__75A278F5");
+
+                entity.HasOne(d => d.IdCompraNavigation)
+                    .WithMany(p => p.Detalles)
+                    .HasForeignKey(d => d.IdCompra)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Detalle__idCompr__76969D2E");
+            });
+
+            modelBuilder.Entity<Estudiante>(entity =>
+            {
+                entity.HasKey(e => e.IdEstudianes)
+                    .HasName("PK__estudian__AEFE45A63950CF98");
+
+                entity.ToTable("estudiantes");
+
+                entity.Property(e => e.IdEstudianes).HasColumnName("idEstudianes");
+
+                entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
+
+                entity.HasOne(d => d.IdUsuarioNavigation)
+                    .WithMany(p => p.Estudiantes)
+                    .HasForeignKey(d => d.IdUsuario)
+                    .HasConstraintName("FK__estudiant__idUsu__6FE99F9F");
             });
 
             modelBuilder.Entity<Usuario>(entity =>

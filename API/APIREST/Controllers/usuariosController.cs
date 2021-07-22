@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -9,7 +11,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
- 
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+
 //albin cordero 13/07/2021
 namespace APIREST.Controllers
 {
@@ -18,6 +22,15 @@ namespace APIREST.Controllers
     public class UsuariosController : ControllerBase
     {
 
+        private readonly IConfiguration _configuration;
+
+        public UsuariosController(
+          
+           IConfiguration configuration)
+        {
+         
+            this._configuration = configuration;
+        }
 
 
         [Authorize]
@@ -49,7 +62,7 @@ namespace APIREST.Controllers
         }
 
         [HttpGet("{Correo},{Contraseña}")]
-        public ActionResult validar(string Correo, string Contraseña)
+        public  ActionResult validar(string Correo, string Contraseña)
         {
             using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
             {
@@ -63,8 +76,10 @@ namespace APIREST.Controllers
                     // creamos un listado de peticion
                     return Ok(query1);
                 }
-
-                return Ok(query);
+                
+                    return (ActionResult)BuildToken(Correo,Contraseña);
+                 
+                 
             }
         }
 
@@ -81,7 +96,7 @@ namespace APIREST.Controllers
                 usuario.Telefono = modelo.Telefono;
                 usuario.Correo = modelo.Correo;
                 usuario.Contraseña = modelo.Contraseña;
-
+                usuario.Status = true;
                 db.Usuarios.Add(usuario);
                 db.SaveChanges();
             }
@@ -124,7 +139,34 @@ namespace APIREST.Controllers
             return Ok("usuario actualizado correctamente");
         }
 
+        private IActionResult BuildToken(string Correo, string Contraseña)
+        {
+            var claims = new[]
+            {
+                new Claim(JwtRegisteredClaimNames.UniqueName, Correo),
+                new Claim("Role", "Estudiante"),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            };
 
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Llave_super_secreta"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var expiration = DateTime.UtcNow.AddHours(1);
+
+            JwtSecurityToken token = new JwtSecurityToken(
+               issuer: "yourdomain.com",
+               audience: "yourdomain.com",
+               claims: claims,
+               expires: expiration,
+               signingCredentials: creds);
+
+            return Ok(new
+            {
+                token = new JwtSecurityTokenHandler().WriteToken(token),
+                expiration = expiration
+            });
+
+        }
     }
 
 }
