@@ -20,6 +20,7 @@ namespace APIREST.Models
         public virtual DbSet<Curso> Cursos { get; set; }
         public virtual DbSet<DatosInstructor> DatosInstructors { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
+        public virtual DbSet<Leccion> Leccions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

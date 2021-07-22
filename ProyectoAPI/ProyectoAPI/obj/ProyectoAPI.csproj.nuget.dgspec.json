@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\tito\\OneDrive\\Desktop\\proyectoapi\\ProyectoAPI\\ProyectoAPI\\ProyectoAPI.csproj": {}
+    "C:\\Users\\tito\\OneDrive\\Documentos\\APIPRoyecto\\Proyecto\\ProyectoAPI\\ProyectoAPI\\ProyectoAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\tito\\OneDrive\\Desktop\\proyectoapi\\ProyectoAPI\\ProyectoAPI\\ProyectoAPI.csproj": {
+    "C:\\Users\\tito\\OneDrive\\Documentos\\APIPRoyecto\\Proyecto\\ProyectoAPI\\ProyectoAPI\\ProyectoAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tito\\OneDrive\\Desktop\\proyectoapi\\ProyectoAPI\\ProyectoAPI\\ProyectoAPI.csproj",
+        "projectUniqueName": "C:\\Users\\tito\\OneDrive\\Documentos\\APIPRoyecto\\Proyecto\\ProyectoAPI\\ProyectoAPI\\ProyectoAPI.csproj",
         "projectName": "ProyectoAPI",
-        "projectPath": "C:\\Users\\tito\\OneDrive\\Desktop\\proyectoapi\\ProyectoAPI\\ProyectoAPI\\ProyectoAPI.csproj",
+        "projectPath": "C:\\Users\\tito\\OneDrive\\Documentos\\APIPRoyecto\\Proyecto\\ProyectoAPI\\ProyectoAPI\\ProyectoAPI.csproj",
         "packagesPath": "C:\\Users\\tito\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tito\\OneDrive\\Desktop\\proyectoapi\\ProyectoAPI\\ProyectoAPI\\obj\\",
+        "outputPath": "C:\\Users\\tito\\OneDrive\\Documentos\\APIPRoyecto\\Proyecto\\ProyectoAPI\\ProyectoAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -44,10 +44,6 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
-            "Microsoft.AspNetCore.Cors": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[5.0.8, )"
