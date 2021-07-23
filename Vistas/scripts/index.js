@@ -16,7 +16,7 @@ let cursos = [];
 // ------ functions
 
 // seteamos los valores de un objeto empresa en los inputs del formulario
-const setCusosValuesToForm = (curso) => {
+const setCursosValuesToForm = (curso) => {
   const { nombre, descripcion, costo, instructor, duracion } =
     form.elements;
 console.log(curso);
@@ -47,14 +47,7 @@ const deleteCurso = (index) => {
     .catch(console.error);
 };
 
-// obtenemos el tiempo formateado como html con la hora del backend
-/*const getTime = (horaInicio) => {
-  return horaInicio.hours !== 0 && horaInicio.minutes !== 0
-    ? `<p class="card-text"><b>Hora Inicio</b> ${
-        horaInicio.hours
-      }:${horaInicio.minutes.toString().padStart(2, 0)} </p>`
-    : "";
-};*/
+
 
 // con los datos de la empresa creamos una linda tarjetita para mostrar su información
 const insertCursoIntoDom = (curso, index) => {
@@ -70,7 +63,7 @@ const insertCursoIntoDom = (curso, index) => {
             <h5 class="card-title">Duracion: ${curso.duracion} hrs</h5>
             
             <button onclick="openModalEdit(${index})" class="btn btn-primary"> Editar </button>
-            <button onclick="deleteEmpresa(${index})" class="btn btn-danger"> Eliminar </button>
+            <button onclick="deleteCurso(${index})" class="btn btn-danger"> Eliminar </button>
           </div>
         </div>
     `;
