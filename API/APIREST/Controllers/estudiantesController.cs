@@ -46,23 +46,25 @@ namespace APIREST.Controllers
             return Ok("estudiante actualizado correctamente");
         }
 
-        ProyectocrsContext ctx;
-        public estudiantesController(ProyectocrsContext _ctx)
-        {
-            ctx = _ctx;
-        }
-
         [HttpGet("{id}")]
         public ActionResult GetEstudiante(int id)
         {
             using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
             {
+                var query = db.Estudiantes.Select(estudiante => new
+                {
+                    IdUsuario = estudiante.UsuarioNavigation.IdUsuario,
+                    IdEstudiante = estudiante.IdEstudiante,
+                    Nombre = estudiante.UsuarioNavigation.Nombre,
+                    Apellido = estudiante.UsuarioNavigation.Apellido,
+                    Telefono = estudiante.UsuarioNavigation.Telefono,
+                    Correo = estudiante.UsuarioNavigation.Correo,
+                    Contraseña = estudiante.UsuarioNavigation.Contraseña,
+                    Nit = estudiante.Nit,
+                    NumeroTarjeta = estudiante.NumeroTarjeta
+                }).Where(estudiante => estudiante.IdUsuario == id).ToList();
 
-                var query = db.Usuarios.Join(db.Estudiantes, usuario => usuario.IdUsuario, estudiante => estudiante.Usuario, (usuario, estudiante) => new { Usuario = usuario, Estudiante = estudiante })
-                .Where(userEstudent => userEstudent.Usuario.IdUsuario == id).ToList();
                 return Ok(query);
-                
-
                
             }
         }

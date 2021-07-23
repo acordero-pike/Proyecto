@@ -31,7 +31,7 @@ namespace APIREST.Controllers
             return Ok("instructor añadido correctamente");
         }
 
-        //lourdes 22/07/2021
+
         [HttpPut]
         public ActionResult Put([FromBody] Models.DatosInstructor modelo)
         {
@@ -48,6 +48,33 @@ namespace APIREST.Controllers
 
             }
             return Ok("estudiante actualizado correctamente");
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult GetEstudiante(int id)
+        {
+            using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
+            {
+                var query = db.DatosInstructors.Select(instructor => new
+                {
+
+                    IdUsuario = instructor.UsuarioNavigation.IdUsuario,
+                    IdInstructor = instructor.IdInstructor,
+                    Nombre = instructor.UsuarioNavigation.Nombre,
+                    Apellido = instructor.UsuarioNavigation.Apellido,
+                    Telefono = instructor.UsuarioNavigation.Telefono,
+                    Correo = instructor.UsuarioNavigation.Correo,
+                    Constraseña = instructor.UsuarioNavigation.Contraseña,
+                    Estudios = instructor.Estudios,
+                    Certificacion = instructor.Certificacion,
+                    ExperienciaLab = instructor.ExperienciaLab,
+                    CuentaBancaria = instructor.CuentaBancaria
+
+                }).Where(instructor => instructor.IdUsuario == id).ToList();
+
+                return Ok(query);
+
+            }
         }
     }
 }
