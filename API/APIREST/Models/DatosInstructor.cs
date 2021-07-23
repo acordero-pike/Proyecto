@@ -19,6 +19,7 @@ namespace APIREST.Models
         public int CuentaBancaria { get; set; }
         public int Usuario { get; set; }
 
+        public virtual Usuario UsuarioNavigation { get; set; }
         public virtual ICollection<Curso> Cursos { get; set; }
     }
 }

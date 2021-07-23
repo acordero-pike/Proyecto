@@ -81,6 +81,7 @@ namespace APIREST.Controllers
                 usuario.Telefono = modelo.Telefono;
                 usuario.Correo = modelo.Correo;
                 usuario.Contraseña = modelo.Contraseña;
+                usuario.Status = true;
 
                 db.Usuarios.Add(usuario);
                 db.SaveChanges();

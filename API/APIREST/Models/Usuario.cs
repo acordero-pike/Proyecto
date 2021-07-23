@@ -7,6 +7,12 @@ namespace APIREST.Models
 {
     public partial class Usuario
     {
+        public Usuario()
+        {
+            DatosInstructors = new HashSet<DatosInstructor>();
+            Estudiantes = new HashSet<Estudiante>();
+        }
+
         public int IdUsuario { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
@@ -14,5 +20,8 @@ namespace APIREST.Models
         public string Correo { get; set; }
         public string Contraseña { get; set; }
         public bool? Status { get; set; }
+
+        public virtual ICollection<DatosInstructor> DatosInstructors { get; set; }
+        public virtual ICollection<Estudiante> Estudiantes { get; set; }
     }
 }

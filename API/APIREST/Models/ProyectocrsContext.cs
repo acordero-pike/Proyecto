@@ -19,6 +19,7 @@ namespace APIREST.Models
 
         public virtual DbSet<Curso> Cursos { get; set; }
         public virtual DbSet<DatosInstructor> DatosInstructors { get; set; }
+        public virtual DbSet<Estudiante> Estudiantes { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -26,7 +27,7 @@ namespace APIREST.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-IFKEU1D\\SQLEXPRESS;Database=Proyectocrs;user=sa;password=albin123;Trusted_Connection=false;MultipleActiveResultSets=true");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-UVJPA4R;Database=Proyectocrs;user=prueba;password=prueba");
             }
         }
 
@@ -40,6 +41,8 @@ namespace APIREST.Models
                     .HasName("PK__cursos__8551ED054066E96A");
 
                 entity.ToTable("cursos");
+
+                entity.HasIndex(e => e.IdInstructor, "IX_cursos_idInstructor");
 
                 entity.Property(e => e.IdCurso).HasColumnName("idCurso");
 
@@ -92,6 +95,38 @@ namespace APIREST.Models
                     .HasColumnName("experienciaLab");
 
                 entity.Property(e => e.Usuario).HasColumnName("usuario");
+
+                entity.HasOne(d => d.UsuarioNavigation)
+                    .WithMany(p => p.DatosInstructors)
+                    .HasForeignKey(d => d.Usuario)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_USUARIO");
+            });
+
+            modelBuilder.Entity<Estudiante>(entity =>
+            {
+                entity.HasKey(e => e.IdEstudiante)
+                    .HasName("PK__estudian__AEFFDBC5CC309062");
+
+                entity.ToTable("estudiante");
+
+                entity.Property(e => e.IdEstudiante).HasColumnName("idEstudiante");
+
+                entity.Property(e => e.Nit)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("nit");
+
+                entity.Property(e => e.NumeroTarjeta).HasColumnName("numeroTarjeta");
+
+                entity.Property(e => e.Usuario).HasColumnName("usuario");
+
+                entity.HasOne(d => d.UsuarioNavigation)
+                    .WithMany(p => p.Estudiantes)
+                    .HasForeignKey(d => d.Usuario)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_USUARIO_ESTUADIANTE");
             });
 
             modelBuilder.Entity<Usuario>(entity =>
