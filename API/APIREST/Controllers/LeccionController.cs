@@ -51,6 +51,7 @@ namespace APIREST.Controllers
             using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
             {
                 Models.Leccion lec = db.Leccions.Find(modelo.IdLeccion);
+                Console.WriteLine(modelo.IdLeccion);
                 lec.Titulo = modelo.Titulo;
                 lec.Descripcion = modelo.Descripcion;
                 lec.Duracion = modelo.Duracion;
