@@ -3,7 +3,21 @@ body {
     overflow-x: hidden;
     height: 100%;
 }
-
+#tabla {
+    width: 100px;
+    margin: 0 auto;
+    border: 1px solid #000;
+  }
+  #tabla th{
+      color:white;
+      padding: 10px;
+      background-color:rgb(10 16 80 / 81%);
+      text-align: center;
+  }
+#tabla td{
+    border: 1px solid #000;
+    text-align: center;
+}
 .card {
     padding: 30px 40px;
     margin-top: 60px;

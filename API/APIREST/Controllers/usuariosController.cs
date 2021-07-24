@@ -76,10 +76,10 @@ namespace APIREST.Controllers
                     // creamos un listado de peticion
                     return Ok(query1);
                 }
-                
-                    return (ActionResult)BuildToken(Correo,Contraseña);
-                 
-                 
+                return Ok(query);
+                //return (ActionResult)BuildToken(Correo,Contraseña);
+
+
             }
         }
 
