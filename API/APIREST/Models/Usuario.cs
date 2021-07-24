@@ -10,6 +10,7 @@ namespace APIREST.Models
         public Usuario()
         {
             DatosInstructors = new HashSet<DatosInstructor>();
+            Estudiantes = new HashSet<Estudiante>();
         }
 
         public int IdUsuario { get; set; }
@@ -21,5 +22,6 @@ namespace APIREST.Models
         public bool? Status { get; set; }
 
         public virtual ICollection<DatosInstructor> DatosInstructors { get; set; }
+        public virtual ICollection<Estudiante> Estudiantes { get; set; }
     }
 }
