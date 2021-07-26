@@ -2,7 +2,7 @@
 
 namespace APIREST.Migrations
 {
-    public partial class m1 : Migration
+    public partial class Primera : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -64,19 +64,51 @@ namespace APIREST.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Leccions",
+                columns: table => new
+                {
+                    IdLeccion = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Titulo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Duracion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EnlaceVideo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IdCurso = table.Column<int>(type: "int", nullable: false),
+                    IdCursoNavigationIdCurso = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Leccions", x => x.IdLeccion);
+                    table.ForeignKey(
+                        name: "FK_Leccions_cursos_IdCursoNavigationIdCurso",
+                        column: x => x.IdCursoNavigationIdCurso,
+                        principalTable: "cursos",
+                        principalColumn: "idCurso",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_cursos_idInstructor",
                 table: "cursos",
                 column: "idInstructor");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Leccions_IdCursoNavigationIdCurso",
+                table: "Leccions",
+                column: "IdCursoNavigationIdCurso");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "cursos");
+                name: "Leccions");
 
             migrationBuilder.DropTable(
                 name: "Usuario");
+
+            migrationBuilder.DropTable(
+                name: "cursos");
 
             migrationBuilder.DropTable(
                 name: "datosInstructor");
