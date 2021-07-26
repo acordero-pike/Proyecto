@@ -37,14 +37,26 @@ namespace APIREST
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "APIREST", Version = "v1" });
             });
- 
+
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-               .AddJwtBearer();
+                 .AddJwtBearer(options =>
+                  options.TokenValidationParameters = new TokenValidationParameters
+                  {
+                      ValidateIssuer = true,
+                      ValidateAudience = true,
+                      ValidateLifetime = true,
+                      ValidateIssuerSigningKey = true,
+                      ValidIssuer = "yourdomain.com",
+                      ValidAudience = "yourdomain.com",
+                      IssuerSigningKey = new SymmetricSecurityKey(
+                     Encoding.UTF8.GetBytes(Configuration["Llave_super_secreta"])),
+                      ClockSkew = TimeSpan.Zero
+                  });
 
 
 
-          services.AddCors(options =>
+            services.AddCors(options =>
             {
  
                  
