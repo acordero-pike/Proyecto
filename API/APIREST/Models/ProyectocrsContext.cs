@@ -23,13 +23,14 @@ namespace APIREST.Models
         public virtual DbSet<Detalle> Detalles { get; set; }
         public virtual DbSet<Estudiante> Estudiantes { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
+        public virtual DbSet<Leccion> Leccions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-IFKEU1D\\SQLEXPRESS;Database=Proyectocrs;user=sa;password=albin123;Trusted_Connection=false;MultipleActiveResultSets=true");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-DF943KT;Database=Proyectocrs;user=tito1;password=1234;Trusted_Connection=false;MultipleActiveResultSets=true");
             }
         }
 
