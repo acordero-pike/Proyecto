@@ -11,12 +11,12 @@ namespace APIREST.Controllers
     [ApiController]
     public class LeccionController : ControllerBase
     {
-        [HttpGet]
-        public ActionResult Get()
+        [HttpGet("{id}")]
+        public ActionResult Get(int id)
         {
             using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
             {
-                var leccion = (from d in db.Leccions
+                var leccion = (from d in db.Leccions where d.IdCurso==id
                                 select d).ToList();
 
                 return Ok(leccion);

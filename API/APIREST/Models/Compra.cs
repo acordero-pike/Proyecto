@@ -12,8 +12,8 @@ namespace APIREST.Models
             Detalles = new HashSet<Detalle>();
         }
 
-        public int? IdEstudiante { get; set; }
         public int IdCompra { get; set; }
+        public int? IdEstudiante { get; set; }
         public DateTime? Fecha { get; set; }
         public double? Total { get; set; }
 

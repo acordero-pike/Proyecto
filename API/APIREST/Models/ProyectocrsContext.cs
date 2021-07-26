@@ -18,19 +18,20 @@ namespace APIREST.Models
         }
 
         public virtual DbSet<Compra> Compras { get; set; }
+        public virtual DbSet<CuentaBancarium> CuentaBancaria { get; set; }
         public virtual DbSet<Curso> Cursos { get; set; }
         public virtual DbSet<DatosInstructor> DatosInstructors { get; set; }
         public virtual DbSet<Detalle> Detalles { get; set; }
         public virtual DbSet<Estudiante> Estudiantes { get; set; }
-        public virtual DbSet<Usuario> Usuarios { get; set; }
         public virtual DbSet<Leccion> Leccions { get; set; }
+        public virtual DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-DF943KT;Database=Proyectocrs;user=tito1;password=1234;Trusted_Connection=false;MultipleActiveResultSets=true");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-IFKEU1D\\SQLEXPRESS;Database=Proyectocrs;user=sa;password=albin123;Trusted_Connection=false;MultipleActiveResultSets=true");
             }
         }
 
@@ -41,7 +42,7 @@ namespace APIREST.Models
             modelBuilder.Entity<Compra>(entity =>
             {
                 entity.HasKey(e => e.IdCompra)
-                    .HasName("PK__Compra__48B99DB7AFA4FE79");
+                    .HasName("PK__Compra__48B99DB7F3620682");
 
                 entity.ToTable("Compra");
 
@@ -54,7 +55,17 @@ namespace APIREST.Models
                 entity.HasOne(d => d.IdEstudianteNavigation)
                     .WithMany(p => p.Compras)
                     .HasForeignKey(d => d.IdEstudiante)
-                    .HasConstraintName("FK__Compra__idEstudi__72C60C4A");
+                    .HasConstraintName("FK__Compra__idEstudi__06CD04F7");
+            });
+
+            modelBuilder.Entity<CuentaBancarium>(entity =>
+            {
+                entity.HasKey(e => e.IdCuenta)
+                    .HasName("PK__CuentaBa__BBC6DF32B8ED25D5");
+
+                entity.Property(e => e.IdCuenta)
+                    .ValueGeneratedNever()
+                    .HasColumnName("idCuenta");
             });
 
             modelBuilder.Entity<Curso>(entity =>
@@ -126,7 +137,7 @@ namespace APIREST.Models
             modelBuilder.Entity<Detalle>(entity =>
             {
                 entity.HasKey(e => new { e.CodCurso, e.IdCompra })
-                    .HasName("PK__Detalle__C648BBBF227C4716");
+                    .HasName("PK__Detalle__C648BBBF980591D1");
 
                 entity.ToTable("Detalle");
 
@@ -136,13 +147,13 @@ namespace APIREST.Models
                     .WithMany(p => p.Detalles)
                     .HasForeignKey(d => d.CodCurso)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Detalle__CodCurs__75A278F5");
+                    .HasConstraintName("FK__Detalle__CodCurs__0C85DE4D");
 
                 entity.HasOne(d => d.IdCompraNavigation)
                     .WithMany(p => p.Detalles)
                     .HasForeignKey(d => d.IdCompra)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Detalle__idCompr__76969D2E");
+                    .HasConstraintName("FK__Detalle__idCompr__0D7A0286");
             });
 
             modelBuilder.Entity<Estudiante>(entity =>
@@ -160,6 +171,25 @@ namespace APIREST.Models
                     .WithMany(p => p.Estudiantes)
                     .HasForeignKey(d => d.IdUsuario)
                     .HasConstraintName("FK__estudiant__idUsu__6FE99F9F");
+            });
+
+            modelBuilder.Entity<Leccion>(entity =>
+            {
+                entity.HasKey(e => e.IdLeccion)
+                    .HasName("PK__Leccion__8916A411B9590120");
+
+                entity.ToTable("Leccion");
+
+                entity.Property(e => e.IdLeccion).HasColumnName("idLeccion");
+
+                entity.Property(e => e.EnlaceVideo).HasColumnName("Enlace_video");
+
+                entity.Property(e => e.IdCurso).HasColumnName("idCurso");
+
+                entity.HasOne(d => d.IdCursoNavigation)
+                    .WithMany(p => p.Leccions)
+                    .HasForeignKey(d => d.IdCurso)
+                    .HasConstraintName("FK__Leccion__idCurso__160F4887");
             });
 
             modelBuilder.Entity<Usuario>(entity =>
