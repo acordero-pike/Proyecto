@@ -66,6 +66,7 @@ namespace APIREST.Controllers
         {
             using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
             {
+                int id = 0;
                 string rol = null;
 
                 var query = db.Usuarios.Where(a => a.Correo == Correo && a.Contraseña == Contraseña).Select(g => g.IdUsuario);
@@ -78,26 +79,29 @@ namespace APIREST.Controllers
                 }
                 else
                 {
-                    var x = from a in db.Estudiantes where a.IdUsuario == query.First() select a;
-                    var y = from a in db.DatosInstructors where a.Usuario == query.First() select a;
+                    var x = from a in db.Estudiantes where a.IdUsuario == query.First() select a.IdEstudianes;
+                    var y = from a in db.DatosInstructors where a.Usuario == query.First() select a.IdInstructor;
 
-                    if (x.Count() > 1)
+                    if (x.Count()>0)
                     {
                         rol = "Estudiante";
+                        id = x.First();
                     }
-                    else {
+                    else if(y.Count() > 0) {
                         rol = "Instructor";
+                        id = y.First();
                     }
 
-                   if(x.Count() <1 && y.Count()<1)
+                   else if(x.Count() <1 && y.Count()<1)
                     {
                         rol = "Administrador";
+                        id = query.First();
                     }
 
 
                 }
                
-                return BuildToken(Correo, Contraseña,rol);
+                return BuildToken(Correo, Contraseña,rol,id);
 
 
             }
@@ -169,7 +173,7 @@ namespace APIREST.Controllers
             return Ok("usuario actualizado correctamente");
         }
 
-        private IActionResult BuildToken(string Correo, string Contraseña ,string rol)
+        private IActionResult BuildToken(string Correo, string Contraseña ,string rol,int id)
         {
             Models.ProyectocrsContext db = new Models.ProyectocrsContext();
 
@@ -192,7 +196,7 @@ namespace APIREST.Controllers
                claims: claims,
                expires: expiration,
                signingCredentials: creds);
-            var query = db.Usuarios.Where(a => a.Correo == Correo && a.Contraseña == Contraseña).Select(g => new { ID = g.IdUsuario, Nombre = g.Nombre + ' ' + g.Apellido, token = new JwtSecurityTokenHandler().WriteToken(token) }).ToList();
+            var query = db.Usuarios.Where(a => a.Correo == Correo && a.Contraseña == Contraseña).Select(g => new { ID = id, Nombre = g.Nombre + ' ' + g.Apellido, token = new JwtSecurityTokenHandler().WriteToken(token) }).ToList();
 
             return Ok(query);
 
