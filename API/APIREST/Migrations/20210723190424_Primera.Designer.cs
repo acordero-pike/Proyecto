@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APIREST.Migrations
 {
     [DbContext(typeof(ProyectocrsContext))]
-    [Migration("20210719211802_m1")]
-    partial class m1
+    [Migration("20210723190424_Primera")]
+    partial class Primera
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -101,6 +101,38 @@ namespace APIREST.Migrations
                     b.ToTable("datosInstructor");
                 });
 
+            modelBuilder.Entity("APIREST.Models.Leccion", b =>
+                {
+                    b.Property<int>("IdLeccion")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Duracion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EnlaceVideo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdCurso")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdCursoNavigationIdCurso")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Titulo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdLeccion");
+
+                    b.HasIndex("IdCursoNavigationIdCurso");
+
+                    b.ToTable("Leccions");
+                });
+
             modelBuilder.Entity("APIREST.Models.Usuario", b =>
                 {
                     b.Property<int>("IdUsuario")
@@ -152,6 +184,15 @@ namespace APIREST.Migrations
                         .IsRequired();
 
                     b.Navigation("IdInstructorNavigation");
+                });
+
+            modelBuilder.Entity("APIREST.Models.Leccion", b =>
+                {
+                    b.HasOne("APIREST.Models.Curso", "IdCursoNavigation")
+                        .WithMany()
+                        .HasForeignKey("IdCursoNavigationIdCurso");
+
+                    b.Navigation("IdCursoNavigation");
                 });
 
             modelBuilder.Entity("APIREST.Models.DatosInstructor", b =>

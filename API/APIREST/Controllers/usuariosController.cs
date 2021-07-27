@@ -62,28 +62,58 @@ namespace APIREST.Controllers
         }
 
         [HttpGet("{Correo},{Contraseña}")]
-        public  ActionResult validar(string Correo, string Contraseña)
+        public async Task<IActionResult> validar(string Correo, string Contraseña)
         {
             using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
             {
-                
+                string rol = null;
 
-                var query = db.Usuarios.Where(a => a.Correo==Correo && a.Contraseña == Contraseña).Select(g => new { ID = g.IdUsuario, Nombre = g.Nombre + ' '+g.Apellido }).ToList();
-             
-                if (query.Count()<1)
+                var query = db.Usuarios.Where(a => a.Correo == Correo && a.Contraseña == Contraseña).Select(g => g.IdUsuario);
+
+                if (query.Count() < 1)
                 {
                     var query1 = new { status = "400" };
                     // creamos un listado de peticion
                     return Ok(query1);
                 }
-                return Ok(query);
-                //return (ActionResult)BuildToken(Correo,Contraseña);
+                else
+                {
+                    var x = from a in db.Estudiantes where a.IdUsuario == query.First() select a;
+                    var y = from a in db.DatosInstructors where a.Usuario == query.First() select a;
+
+                    if (x.Count() > 1)
+                    {
+                        rol = "Estudiante";
+                    }
+                    else {
+                        rol = "Instructor";
+                    }
+
+                   if(x.Count() <1 && y.Count()<1)
+                    {
+                        rol = "Administrador";
+                    }
+
+
+                }
+               
+                return BuildToken(Correo, Contraseña,rol);
 
 
             }
         }
+        [HttpGet("{token}")]
+        public ActionResult desce(string token)
+        {
+            var tk = new JwtSecurityTokenHandler().ReadToken(token);
 
-         //lOURDES 
+            return Ok(tk);
+        }
+
+
+
+
+        //lOURDES 
 
         [HttpPost]
         public ActionResult Post([FromBody] Models.Usuario modelo)
@@ -139,19 +169,22 @@ namespace APIREST.Controllers
             return Ok("usuario actualizado correctamente");
         }
 
-        private IActionResult BuildToken(string Correo, string Contraseña)
+        private IActionResult BuildToken(string Correo, string Contraseña ,string rol)
         {
+            Models.ProyectocrsContext db = new Models.ProyectocrsContext();
+
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.UniqueName, Correo),
-                new Claim("Role", "Estudiante"),
+                new Claim("Rol", rol),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Llave_super_secreta"]));
+            string llave = "Llave_super_secreta";
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(llave));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            var expiration = DateTime.UtcNow.AddHours(1);
+            var expiration = DateTime.UtcNow.AddHours(2);
 
             JwtSecurityToken token = new JwtSecurityToken(
                issuer: "yourdomain.com",
@@ -159,12 +192,9 @@ namespace APIREST.Controllers
                claims: claims,
                expires: expiration,
                signingCredentials: creds);
+            var query = db.Usuarios.Where(a => a.Correo == Correo && a.Contraseña == Contraseña).Select(g => new { ID = g.IdUsuario, Nombre = g.Nombre + ' ' + g.Apellido, token = new JwtSecurityTokenHandler().WriteToken(token) }).ToList();
 
-            return Ok(new
-            {
-                token = new JwtSecurityTokenHandler().WriteToken(token),
-                expiration = expiration
-            });
+            return Ok(query);
 
         }
     }

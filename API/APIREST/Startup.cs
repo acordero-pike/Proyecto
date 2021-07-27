@@ -50,7 +50,7 @@ namespace APIREST
                       ValidIssuer = "yourdomain.com",
                       ValidAudience = "yourdomain.com",
                       IssuerSigningKey = new SymmetricSecurityKey(
-                     Encoding.UTF8.GetBytes(Configuration["Llave_super_secreta"])),
+                     Encoding.UTF8.GetBytes("Llave_super_secreta")),
                       ClockSkew = TimeSpan.Zero
                   });
 

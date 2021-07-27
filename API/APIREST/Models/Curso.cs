@@ -10,6 +10,7 @@ namespace APIREST.Models
         public Curso()
         {
             Detalles = new HashSet<Detalle>();
+            Leccions = new HashSet<Leccion>();
         }
 
         public int IdCurso { get; set; }
@@ -21,5 +22,6 @@ namespace APIREST.Models
 
         public virtual DatosInstructor IdInstructorNavigation { get; set; }
         public virtual ICollection<Detalle> Detalles { get; set; }
+        public virtual ICollection<Leccion> Leccions { get; set; }
     }
 }
