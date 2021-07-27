@@ -1,12 +1,18 @@
 const url = "https://localhost:5001/api/Leccion/"
-const headers = {
-    'Accept' : "application/json",
-    "Content-Type": "application/json",
-  };
-  const LeccionService = {
+ 
+
+prearray = JSON.parse( localStorage.getItem('Llave') ) || []  ;
+prearray.forEach( ar =>  {  token =ar.token})
+
+  const myHeaders = new Headers();
+
+myHeaders.append('Authorization', `Bearer ${token}  `);
+myHeaders.append('Content-Type', 'application/json');  
+const LeccionService = {
     getLecciones(curso) {
-      return fetch(url+curso, {
-        method: "GET",
+            return fetch(url+curso, {
+        headers:myHeaders,
+         method: "GET",
       }).then((response) => response.json());
     },
     deleteLecciones(IdLeccion) {
@@ -33,3 +39,4 @@ const headers = {
     },
   };
   
+ 
