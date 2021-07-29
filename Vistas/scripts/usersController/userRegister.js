@@ -1,5 +1,4 @@
 import UserService from "../services/userService.js";
-import LocalStorage from "../utils/LocalStorage.js";
 import StaticAlert from "../utils/staticAlert.js";
 
 (function () {
@@ -27,7 +26,7 @@ import StaticAlert from "../utils/staticAlert.js";
       StaticAlert.show("Todos los campos son requeridos", form);
       return;
     }
-    //const id = LocalStorage.get("userId");
+
     UserService.register(user)
       .then((response) => {
         alert(response);

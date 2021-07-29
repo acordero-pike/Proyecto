@@ -162,7 +162,7 @@ if (Rol=="Instructor")
       </ul>
       <div class="navbar-nav" id="logg">
    <a class="nav-link"  style="color:white ;" href="../pages/Login.html">Login </a>
-<a class="nav-link"  style="color:white ;"   href="../pages/userRegister.html">singup </a>
+<a class="nav-link"  style="color:white ;"   href="../pages/elegirModo.html">singup </a>
     </div>
   </div>
   </div>
