@@ -18,12 +18,24 @@ namespace APIREST.Controllers
             using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
             {
                 Models.DatosInstructor instructor = new Models.DatosInstructor();
+                Models.Usuario usuario = new Models.Usuario();
 
+                usuario.Status = true;
+                db.Usuarios.Add(usuario);
+                db.SaveChanges();
+
+                instructor.Usuario = usuario.IdUsuario;
                 instructor.Estudios = modelo.Estudios;
                 instructor.Certificacion = modelo.Certificacion;
                 instructor.ExperienciaLab = modelo.ExperienciaLab;
                 instructor.CuentaBancaria = modelo.CuentaBancaria;
-                instructor.Usuario = modelo.Usuario;
+                usuario.Nombre = modelo.UsuarioNavigation.Nombre;
+                usuario.Apellido = modelo.UsuarioNavigation.Apellido;
+                usuario.Telefono = modelo.UsuarioNavigation.Telefono;
+                usuario.Correo = modelo.UsuarioNavigation.Correo;
+                usuario.Contraseña = modelo.UsuarioNavigation.Contraseña;
+
+
 
                 db.DatosInstructors.Add(instructor);
                 db.SaveChanges();

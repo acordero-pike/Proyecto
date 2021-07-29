@@ -85,8 +85,11 @@ namespace APIREST.Controllers
 
                 db.Usuarios.Add(usuario);
                 db.SaveChanges();
+
+                return Ok(usuario.IdUsuario);
+
             }
-            return Ok("usuario añadido correctamente");
+          
         }
 
 

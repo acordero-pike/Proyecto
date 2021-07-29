@@ -14,14 +14,25 @@ namespace APIREST.Controllers
     {
         //lourdes 21/07/2021
         [HttpPost]
-        public ActionResult Post([FromBody] Models.Estudiante modelo)
+        public ActionResult Post([FromQueryAttribute] Models.Usuario modelo, Models.Estudiante modeloEstudiante)
         {
             using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
             {
                 Models.Estudiante estudiante = new Models.Estudiante();
-                estudiante.Nit = modelo.Nit;
-                estudiante.NumeroTarjeta = modelo.NumeroTarjeta;
-                estudiante.Usuario = modelo.Usuario;
+                Models.Usuario usuario = new Usuario();
+                usuario.Status = true;
+                db.Usuarios.Add(usuario);
+                db.SaveChanges();
+
+
+                estudiante.Usuario = usuario.IdUsuario;
+                estudiante.Nit = modeloEstudiante.Nit;
+                estudiante.NumeroTarjeta = modeloEstudiante.NumeroTarjeta;
+                usuario.Nombre = modeloEstudiante.UsuarioNavigation.Nombre;
+                usuario.Apellido = modeloEstudiante.UsuarioNavigation.Apellido;
+                usuario.Telefono = modeloEstudiante.UsuarioNavigation.Telefono;
+                usuario.Correo = modeloEstudiante.UsuarioNavigation.Correo;
+                usuario.Contraseña = modeloEstudiante.UsuarioNavigation.Contraseña;
 
                 db.Estudiantes.Add(estudiante);
                 db.SaveChanges();
