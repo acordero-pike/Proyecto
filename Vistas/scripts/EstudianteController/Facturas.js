@@ -23,6 +23,8 @@ const obtenerestudiantes = async () => {
 
         const Estudiantes = await obtenerestudiantes();
         
+        if (Estudiantes.length>0)
+       {
         Estudiantes.forEach( est => {
             const { idCompra,fecha,total,cantidad } = est;
             const row = document.createElement('tr');
@@ -48,4 +50,16 @@ const obtenerestudiantes = async () => {
            
             listado.appendChild(row);
         })
+       }else{
+        const row = document.createElement('tr');
+
+          
+        row.innerHTML += `
+        <td colspan="4" style="text-align: center;" class="px-6 py-4 whitespace-no-wrap border-b border-gray-200"> Sin Resultados</td>
+        
+        `;
+
+       
+        listado.appendChild(row);
+       }
     }

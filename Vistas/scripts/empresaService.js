@@ -2,9 +2,14 @@ const headers = {
   'Accept' : "application/json",
   "Content-Type": "application/json",
 };
-export const CursoService = {
+let id = null;
+ prearray = JSON.parse( localStorage.getItem('Llave') ) || []  ;
+   
+    
+ prearray.forEach( ar =>  {  id =ar.id})
+const CursoService = {
   getCursos() {
-    return fetch(URL, {
+    return fetch(URL+'/'+id, {
       method: "GET",
     }).then((response) => response.json());
   },

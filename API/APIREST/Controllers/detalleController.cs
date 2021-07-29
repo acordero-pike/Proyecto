@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace APIREST.Controllers
 {
+    //Albin
     [Route("api/[controller]/")]
     [ApiController]
     public class detalleController : Controller
