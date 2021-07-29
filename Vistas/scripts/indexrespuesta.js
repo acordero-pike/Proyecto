@@ -1,4 +1,4 @@
-const cardListElement = document.getElementById("Comentario");
+const cardListElement = document.getElementById("cardList");
 const modalButton = document.getElementById("modalButton");
 const submitButton = document.getElementById("submitButton");
 const closeModalButton = document.getElementById("closeModalButton");
@@ -10,11 +10,12 @@ let comentarios = [];
 
 
 const setComentariosValuesToForm = (comentarioo) => {
-  const { pregunta, leccion} =
+  const { pregunta, leccion, respuesta} =
     form.elements;
 console.log(comentarioo);
 pregunta.value = comentarioo.pregunta;
 leccion.value = comentarioo.leccion;
+respuesta.value = comentarioo.respuesta;
 };
 
 
@@ -44,11 +45,12 @@ const insertComentarioIntoDom = (comm, index) => {
   const card = `
     <div class="card col-4 mx-1">
           <div class="card-body">
-            <h5 class="card-title" hidden>Id Comentario: ${comm.idComentario}</h5>
+            <h5 class="card-title"hidden>Id Comentario: ${comm.idComentario}</h5>
             <h5 class="card-title">Pregunta:${comm.pregunta}</h5>
             <h5 class="card-title">Leccion: ${comm.leccion}</h5>
-
-            <button onclick="location.href='../pages/Respuestacomentario.html'"class="btn btn-primary">Llévame a otro lado</button>
+            <h5 class="card-title">Respuesta: ${comm.respuesta}</h5>
+            
+            <button onclick="openModalEdit(${index})" class="btn btn-primary"> Agregar Respuesta </button>
           </div>
         </div>
     `;
@@ -65,13 +67,14 @@ const setComentarios = async () => {
 
 
 getFormData = () => {
-  const { pregunta, leccion} =
+  const { pregunta, leccion, respuesta} =
     form.elements;
   
     console.log(form.elements);
   return {
     Pregunta: pregunta.value,
     Leccion: leccion.value,
+    Respuesta: respuesta.value,
   };
 };
 

@@ -32,6 +32,7 @@ namespace APIREST.Controllers
                 Models.Comentario com = new Models.Comentario();
                 com.Pregunta = modelo.Pregunta;
                 com.Leccion = modelo.Leccion;
+                com.Respuesta = "Sin Respuesta";
 
                 db.Comentarios.Add(com);
                 db.SaveChanges();
@@ -51,6 +52,7 @@ namespace APIREST.Controllers
                 Console.WriteLine(modelo.IdComentario);
                 com.Pregunta = modelo.Pregunta;
                 com.Leccion = modelo.Leccion;
+                com.Respuesta = modelo.Respuesta;
 
                 db.Entry(com).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 db.SaveChanges();
