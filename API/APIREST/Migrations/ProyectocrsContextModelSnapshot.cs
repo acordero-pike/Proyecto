@@ -20,6 +20,56 @@ namespace APIREST.Migrations
                 .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("APIREST.Models.Compra", b =>
+                {
+                    b.Property<int>("IdCompra")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("idCompra")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("Fecha")
+                        .HasColumnType("date");
+
+                    b.Property<int?>("IdEstudiante")
+                        .HasColumnType("int")
+                        .HasColumnName("idEstudiante");
+
+                    b.Property<double?>("Total")
+                        .HasColumnType("float");
+
+                    b.HasKey("IdCompra")
+                        .HasName("PK__Compra__48B99DB7F3620682");
+
+                    b.HasIndex("IdEstudiante");
+
+                    b.ToTable("Compra");
+                });
+
+            modelBuilder.Entity("APIREST.Models.CuentaBancarium", b =>
+                {
+                    b.Property<int>("IdCuenta")
+                        .HasColumnType("int")
+                        .HasColumnName("idCuenta");
+
+                    b.Property<string>("NombreBanco")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NombreCuenta")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("Numero")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Tipo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdCuenta")
+                        .HasName("PK__CuentaBa__BBC6DF32B8ED25D5");
+
+                    b.ToTable("CuentaBancaria");
+                });
+
             modelBuilder.Entity("APIREST.Models.Curso", b =>
                 {
                     b.Property<int>("IdCurso")
@@ -96,7 +146,55 @@ namespace APIREST.Migrations
                     b.HasKey("IdInstructor")
                         .HasName("PK__datosIns__C96115215D1A2FF5");
 
+                    b.HasIndex("Usuario");
+
                     b.ToTable("datosInstructor");
+                });
+
+            modelBuilder.Entity("APIREST.Models.Detalle", b =>
+                {
+                    b.Property<int>("CodCurso")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdCompra")
+                        .HasColumnType("int")
+                        .HasColumnName("idCompra");
+
+                    b.Property<double?>("Precio")
+                        .HasColumnType("float");
+
+                    b.HasKey("CodCurso", "IdCompra")
+                        .HasName("PK__Detalle__C648BBBF980591D1");
+
+                    b.HasIndex("IdCompra");
+
+                    b.ToTable("Detalle");
+                });
+
+            modelBuilder.Entity("APIREST.Models.Estudiante", b =>
+                {
+                    b.Property<int>("IdEstudianes")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("idEstudianes")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("IdUsuario")
+                        .HasColumnType("int")
+                        .HasColumnName("idUsuario");
+
+                    b.Property<long?>("Nit")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("NumTarjeta")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("IdEstudianes")
+                        .HasName("PK__estudian__AEFE45A63950CF98");
+
+                    b.HasIndex("IdUsuario");
+
+                    b.ToTable("estudiantes");
                 });
 
             modelBuilder.Entity("APIREST.Models.Leccion", b =>
@@ -104,6 +202,7 @@ namespace APIREST.Migrations
                     b.Property<int>("IdLeccion")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
+                        .HasColumnName("idLeccion")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Descripcion")
@@ -113,22 +212,22 @@ namespace APIREST.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("EnlaceVideo")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Enlace_video");
 
-                    b.Property<int>("IdCurso")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdCursoNavigationIdCurso")
-                        .HasColumnType("int");
+                    b.Property<int?>("IdCurso")
+                        .HasColumnType("int")
+                        .HasColumnName("idCurso");
 
                     b.Property<string>("Titulo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("IdLeccion");
+                    b.HasKey("IdLeccion")
+                        .HasName("PK__Leccion__8916A411B9590120");
 
-                    b.HasIndex("IdCursoNavigationIdCurso");
+                    b.HasIndex("IdCurso");
 
-                    b.ToTable("Leccions");
+                    b.ToTable("Leccion");
                 });
 
             modelBuilder.Entity("APIREST.Models.Usuario", b =>
@@ -173,6 +272,16 @@ namespace APIREST.Migrations
                     b.ToTable("Usuario");
                 });
 
+            modelBuilder.Entity("APIREST.Models.Compra", b =>
+                {
+                    b.HasOne("APIREST.Models.Estudiante", "IdEstudianteNavigation")
+                        .WithMany("Compras")
+                        .HasForeignKey("IdEstudiante")
+                        .HasConstraintName("FK__Compra__idEstudi__06CD04F7");
+
+                    b.Navigation("IdEstudianteNavigation");
+                });
+
             modelBuilder.Entity("APIREST.Models.Curso", b =>
                 {
                     b.HasOne("APIREST.Models.DatosInstructor", "IdInstructorNavigation")
@@ -184,18 +293,83 @@ namespace APIREST.Migrations
                     b.Navigation("IdInstructorNavigation");
                 });
 
+            modelBuilder.Entity("APIREST.Models.DatosInstructor", b =>
+                {
+                    b.HasOne("APIREST.Models.Usuario", "UsuarioNavigation")
+                        .WithMany("DatosInstructors")
+                        .HasForeignKey("Usuario")
+                        .HasConstraintName("FK__datosInst__usuar__5AEE82B9")
+                        .IsRequired();
+
+                    b.Navigation("UsuarioNavigation");
+                });
+
+            modelBuilder.Entity("APIREST.Models.Detalle", b =>
+                {
+                    b.HasOne("APIREST.Models.Curso", "CodCursoNavigation")
+                        .WithMany("Detalles")
+                        .HasForeignKey("CodCurso")
+                        .HasConstraintName("FK__Detalle__CodCurs__0C85DE4D")
+                        .IsRequired();
+
+                    b.HasOne("APIREST.Models.Compra", "IdCompraNavigation")
+                        .WithMany("Detalles")
+                        .HasForeignKey("IdCompra")
+                        .HasConstraintName("FK__Detalle__idCompr__0D7A0286")
+                        .IsRequired();
+
+                    b.Navigation("CodCursoNavigation");
+
+                    b.Navigation("IdCompraNavigation");
+                });
+
+            modelBuilder.Entity("APIREST.Models.Estudiante", b =>
+                {
+                    b.HasOne("APIREST.Models.Usuario", "IdUsuarioNavigation")
+                        .WithMany("Estudiantes")
+                        .HasForeignKey("IdUsuario")
+                        .HasConstraintName("FK__estudiant__idUsu__6FE99F9F");
+
+                    b.Navigation("IdUsuarioNavigation");
+                });
+
             modelBuilder.Entity("APIREST.Models.Leccion", b =>
                 {
                     b.HasOne("APIREST.Models.Curso", "IdCursoNavigation")
-                        .WithMany()
-                        .HasForeignKey("IdCursoNavigationIdCurso");
+                        .WithMany("Leccions")
+                        .HasForeignKey("IdCurso")
+                        .HasConstraintName("FK__Leccion__idCurso__160F4887");
 
                     b.Navigation("IdCursoNavigation");
+                });
+
+            modelBuilder.Entity("APIREST.Models.Compra", b =>
+                {
+                    b.Navigation("Detalles");
+                });
+
+            modelBuilder.Entity("APIREST.Models.Curso", b =>
+                {
+                    b.Navigation("Detalles");
+
+                    b.Navigation("Leccions");
                 });
 
             modelBuilder.Entity("APIREST.Models.DatosInstructor", b =>
                 {
                     b.Navigation("Cursos");
+                });
+
+            modelBuilder.Entity("APIREST.Models.Estudiante", b =>
+                {
+                    b.Navigation("Compras");
+                });
+
+            modelBuilder.Entity("APIREST.Models.Usuario", b =>
+                {
+                    b.Navigation("DatosInstructors");
+
+                    b.Navigation("Estudiantes");
                 });
 #pragma warning restore 612, 618
         }
