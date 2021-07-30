@@ -20,7 +20,7 @@
                 <h3>Registro Estudiantes</h3>
                 <div class="card">
                     <h5 class="text-center mb-4">Datos Estudiante</h5>
-                    <form class="form-card"> <div class="row justify-content-between text-left">
+                    <form class="form-card" id="form" method="POST"> <div class="row justify-content-between text-left">
                         <div class="form-group col-sm-6 flex-column d-flex"> 
                             <label class="form-control-label px-3">Nombre<span class="text-danger">*</span></label> 
                             <input type="text" id="nombre" name="nombre" placeholder=""> 
@@ -43,7 +43,7 @@
                         <input type="password" id="pass" name="pass" placeholder=""> </div>
                         <div class="form-group col-sm-6 flex-column d-flex">
                             <label class="form-control-label px-3">Número de tarjeta<span class="text-danger"> *</span></label> 
-                            <input type="text" id="numTarjeta" name="numTarjeta" placeholder=""> 
+                            <input type="text" id="numeroTarjeta" name="numeroTarjeta" placeholder=""> 
                            </div>
                     </div>
                         <div class="row justify-content-between text-left">
@@ -60,6 +60,7 @@
             </div>
         </div>
     </div>
-    
+    <script src="../scripts/usersController/registroEstudinate.js" type="module"></script>
+    <script src="../scripts/utils/global.js"></script>
 </body>
 </html>
