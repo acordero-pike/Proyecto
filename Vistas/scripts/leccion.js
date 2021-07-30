@@ -13,8 +13,8 @@ const LeccionService = {
  
   getLecciones(curso) {
     return fetch(url+curso, {
-      method: "GET"
-     
+      method: "GET",
+      headers:myHeaders,
     }).then(response => {
 
       if( !response.ok ){

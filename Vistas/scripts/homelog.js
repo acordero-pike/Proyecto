@@ -37,10 +37,23 @@ const vaciarCarritoBtn=document.querySelector('#vaciar-carrito');
 
 let name=null;
 const CursoService = {
-    getCursos() {
-      return fetch(requestUrl, {
-        method: "GET",
-      }).then((response) => response.json());
+  getCursos() {
+    return fetch(requestUrl, {
+      method: "GET",
+       
+    }).then(response => {
+      if( !response.ok ){
+    
+        catchError( response );
+
+    } else {
+      
+
+     return response.json();
+
+    }
+
+}).catch( catchError )
     }
 }
  
@@ -281,5 +294,22 @@ function limpiarHTML(){
     while(contenedorCarrito.firstChild){
         contenedorCarrito.removeChild(contenedorCarrito.firstChild)
     }
+
+}
+
+function catchError( error ,msj){
+
+  console.log( error.status );
+   
+  if (msj==null && error.status==401)
+  {
+      msj="Algo Salio Mal... ,No tiene permitido el uso de este Recurso";
+  }
+  else if(msj==null)
+  {
+     msj="Algo Salio Mal...";
+  }
+//   
+window.location.href=`error.html?id=${msj}`;
 
 }

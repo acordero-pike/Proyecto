@@ -89,7 +89,7 @@ const CursoService = {
   
       } else {
   
-       return response.json();
+       return response;
   
       }
   
