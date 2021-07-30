@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "U2rioyIsd4nzZAhYtAPTSSQPq74mVpZuvW6rITMwtwwgG3BpKGAtiLa/SK4MnuQfd9SZMQwVsa64bNGnPvwlSw==",
+  "dgSpecHash": "NOgwYOxEhqE4t/NZaizIlepu/JlnrliBGFFt/6dRDoZuO9fTYasaba4z/yfPeNXosUdDGxfPKTo18sFy9WD5gg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\tito\\OneDrive\\Documentos\\nuevoapi\\Proyecto\\API\\APIREST\\APIREST.csproj",
+  "projectFilePath": "C:\\Users\\tito\\OneDrive\\Documentos\\ProyectoApi(Copia)\\Proyecto\\API\\APIREST\\APIREST.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\tito\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\tito\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.8\\microsoft.aspnetcore.authentication.jwtbearer.5.0.8.nupkg.sha512",
