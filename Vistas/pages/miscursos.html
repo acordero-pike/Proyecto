@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link href="../css/adaptivo_grid_seman_1.css" rel="stylesheet"/> 
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -19,20 +19,28 @@
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
    <script src="../scripts/utils/nav.js"></script>
    <script src="../scripts/EstudianteController/permisoest.js"></script>
-    <title>Curso-Lecciones </title>
+    <title>Mis Cursos </title>
   </head>
   <body>
     
     <header id="nav-placeholder" >
        
     </header> 
-       <br>
-        <div class="principal_adaptable_float"><iframe src="https://www.youtube.com/embed/L1oMLsiMusQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-        <div class="lateral_adaptable_float">lista</div>
-        <div class="pie_adaptable_float">Comentarios </div>
-       
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    </body>
-    </html>
+     
+    <main class="container">
+      <h2 class="m-3">CURSOS</h2>
+      <div id="cardList" class="row container"></div>
+    </main>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../scripts/EstudianteController/miscrs.js"></script>
+
+    <script src="../scripts/EstudianteController/service.js"></script>
+    
+    <link href="../css/custom.css" rel="stylesheet"></link>
+
+  </body>
+</html>

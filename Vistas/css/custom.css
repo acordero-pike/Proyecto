@@ -1,6 +1,13 @@
 html {
     font-size: 62.5%;
 }
+.col-4
+{
+     
+       
+        width: 32.5%;
+     
+}
 body {
     background-color: #f5f3f3
 }

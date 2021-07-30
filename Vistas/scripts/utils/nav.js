@@ -59,6 +59,7 @@ if (Rol=="Instructor")
   }
   else if(Rol=="Estudiante")
   {
+   
     document.querySelector("#nav-placeholder").innerHTML=`<nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Second navbar example">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Lerning2teach</a>
@@ -72,7 +73,7 @@ if (Rol=="Instructor")
             <a class="nav-link active" aria-current="page" href="../pages/index.html"  >Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../pages/cursos.html">Mis Cursos</a>
+            <a class="nav-link" href="../pages/miscursos.html">Mis Cursos</a>
           </li>
           <li class="nav-item">
           <a class="nav-link" href="../pages/Compras.html">Mis Facturas</a>

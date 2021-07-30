@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -25,6 +27,7 @@ namespace APIREST.Controllers
             }
 
         }
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 
         [HttpGet("{id}")]
         public ActionResult Get(int id)
@@ -40,6 +43,7 @@ namespace APIREST.Controllers
             }
 
         }
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 
         [HttpPost]
         public ActionResult Post([FromBody] Models.Solicitudes.CursoSolicitud modelo 
@@ -60,6 +64,7 @@ namespace APIREST.Controllers
             }
             return Ok("El curso se añadió correctamente");
         }
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 
         [HttpPut]
         public ActionResult Put([FromBody] Models.Curso modelo)
@@ -79,15 +84,18 @@ namespace APIREST.Controllers
             }
             return Ok("El curso se Actualizó correctamente");
         }
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+
         [HttpDelete]
         public ActionResult Delete([FromBody] Models.Curso modelo)
         {
             using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
             {
                 bool validar;
-                var query = (from r in db.Cursos where r.IdCurso == modelo.IdCurso select r).Count();
-
-                if(query==0)
+                var x = from r in db.Cursos where r.IdCurso == modelo.IdCurso select r.Detalles.Count();
+                var y = from r in db.Cursos where r.IdCurso == modelo.IdCurso select r.Leccions.Count();
+                int query = x.First();
+                if(query>0 || y.First()>0)
                 {
                     validar = false;
                 }
@@ -106,7 +114,8 @@ namespace APIREST.Controllers
                 }
                 else
                 {
-                    return Ok("Est Curso ya tiene participantes, no se puede eliminar");
+                    var query1 =  new { mess = "Este Curso ya tiene participantes, no se puede eliminar" } ;
+                    return BadRequest(query1);
                 }
                
             }

@@ -26,7 +26,7 @@ const setCursosValuesToForm = (curso) => {
 console.log(curso);
   nombre.value = curso.nombre;
   descripcion.value = curso.descripcion;
-  costo.value = curso.costo;
+  costo.value = curso.costo/1.2;
   idinstructor.value = id;
   duracion.value = curso.duracion;
 };
@@ -67,7 +67,7 @@ const deleteCurso = (index) => {
 
 // con los datos de la empresa creamos una linda tarjetita para mostrar su información
 const insertCursoIntoDom = (curso, index) => {
-  console.log(curso.idCurso);
+ 
   const card = `
     <div class="card col-4 mx-1">
           <div class="card-body" style="

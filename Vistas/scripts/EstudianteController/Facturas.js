@@ -1,19 +1,32 @@
 let id = null;
+prearray = JSON.parse( localStorage.getItem('Llave') ) || []  ;
+prearray.forEach( ar =>  {  token =ar.token})
+
+  const myHeaders = new Headers();
+myHeaders.append('Authorization', `Bearer ${token}  `);
+myHeaders.append('Content-Type', 'application/json'); 
 document.addEventListener('DOMContentLoaded', mostrar);
 prearray = JSON.parse( localStorage.getItem('Llave') ) || []  ;
 prearray.forEach( ar =>  {  id =ar.id})
 const url  = `https://localhost:5001/api/compra/`+id
 const obtenerestudiantes = async () => {
-    try {
-        const resultado = await fetch(url);
-       
-        const estudiante = await resultado.json();
-        console.log(estudiante)
-       return estudiante;
-
-    } catch (error) {
-        console.log(error);
-    }
+     
+        return fetch(url, {
+            method: "GET"
+           ,headers:myHeaders,
+          }).then(response => {
+      
+            if( !response.ok ){
+        
+                catchError( response );
+        
+            } else {
+        
+             return response.json();
+        
+            }
+        
+        }).catch( catchError )
 }
 
 
@@ -63,3 +76,20 @@ const obtenerestudiantes = async () => {
         listado.appendChild(row);
        }
     }
+
+    
+    function catchError( error ,msj){
+
+        console.log( error.status );
+        if (msj==null && error.status==401)
+        {
+            msj="Algo Salio Mal... ,No tiene permitido el uso de este Recurso";
+        }
+        else if(msj==null)
+        {
+           msj="Algo Salio Mal...";
+        }
+      //   
+      window.location.href=`error.html?id=${msj}`;
+      
+      }

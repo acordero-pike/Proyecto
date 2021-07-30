@@ -9,11 +9,12 @@ using System.Threading.Tasks;
 
 namespace APIREST.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+
     [Route("api/[controller]")]
     [ApiController]
     public class LeccionController : ControllerBase
     {
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 
         [HttpGet("{id}")]
         public ActionResult Get(int id)
@@ -59,7 +60,7 @@ namespace APIREST.Controllers
                 lec.Titulo = modelo.Titulo;
                 lec.Descripcion = modelo.Descripcion;
                 lec.Duracion = modelo.Duracion;
-                lec.Descripcion = modelo.EnlaceVideo;
+                lec.EnlaceVideo = modelo.EnlaceVideo;
                 lec.IdCurso = modelo.IdCurso;
 
                 db.Entry(lec).State = Microsoft.EntityFrameworkCore.EntityState.Modified;

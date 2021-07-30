@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', parseJwt);
 prearray = JSON.parse( localStorage.getItem('Llave') ) || []  ;
-let token="";
+let token=null;
  prearray.forEach( ar =>  {  token =ar.token})
 
 function parseJwt () {
     console.log(token)
-    if(token.length<1){
+    if(token == null){
         window.location.href="../pages/Home.html";
     }
     else
