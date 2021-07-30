@@ -14,7 +14,7 @@ namespace APIREST.Controllers
     {
         [HttpGet("{id}")]
 
-       // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 
         public ActionResult miscursos(int id)
         {

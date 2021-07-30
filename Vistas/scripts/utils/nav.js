@@ -80,7 +80,38 @@ if (Rol=="Instructor")
         </li>
           
         </ul>
+ 
+
+
         <div class="navbar-nav" id="logg">
+      
+          <ul>
+              <li class="submenu">
+                      <img src="../img/cart.png" style="" id="img-carrito">
+                      <div id="carrito">
+                              
+                      <table id="lista-carrito" class="u-full-width">
+                      <thead>
+                      <tr>
+                                         
+                      <th>Nombre</th>
+                     
+                      <th>Duración</th>
+                      <th>Precio</th>
+                      <th></th>
+                      <th></th>
+                  </tr>
+                  <th></th>
+              </thead>
+              <tbody>
+              
+              </tbody>
+          </table>
+                              <a href="#" id="vaciar-carrito" class="button u-full-width">Vaciar Carrito</a>
+                      </div>
+              </li>
+          </ul>
+       
       <a class="nav-link"  style="color:white ;" href="../pages/updateUser.html">${nombre}</a>
   <a class="nav-link"  style="color:white ;" id="logoff" >LogOff</a>
       </div>
