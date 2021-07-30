@@ -64,7 +64,7 @@ const setCursos = async () => {
     <p> Autor : ${curso.idInstructor} </p>
     <img src="../img/estrellas.png">
                         <p >  Costo: Q.${curso.costo} </p>
-                  <a href="#" class="u-full-width button-primary button input agregar-carrito" data-id="1">Agregar Al Carrito</a>
+                  <a  class="u-full-width button-primary button input agregar-carrito" data-id="1" href="../pages/Login.html">Agregar Al Carrito</a>
                </div>
             </div>
           

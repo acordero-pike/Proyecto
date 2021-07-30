@@ -1,5 +1,11 @@
 const requestUrl = `${URL}/usuarios`
 
+prearray = JSON.parse( localStorage.getItem('Llave') ) || []  ;
+prearray.forEach( ar =>  {  token =ar.token})
+
+  const myHeaders = new Headers();
+myHeaders.append('Authorization', `Bearer ${token}  `);
+myHeaders.append('Content-Type', 'application/json'); 
 const UserService = {
   getUsuarios() {
     return fetch(requestUrl, {
@@ -9,21 +15,21 @@ const UserService = {
   deleteUsuario(idUsuario) {
     return fetch(requestUrl, {
       method: "DELETE",
-      headers,
+      headers:myHeaders,
       body: JSON.stringify({idUsuario: idUsuario})
     }).then((response) => response.json());
   },
   updateUsuario(body) {
     return fetch(requestUrl, {
       method: "PUT",
-      headers,
+      headers:myHeaders,
       body: JSON.stringify(body),
     }).then((response) => response.json());
   },
   register(body) {
     return fetch(requestUrl, {
       method: "POST",
-      headers,
+      headers:myHeaders,
       body: JSON.stringify(body),
     })
   },

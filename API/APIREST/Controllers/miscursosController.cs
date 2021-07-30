@@ -7,22 +7,20 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace APIREST.Controllers
-{
-    //Albin
+{//albin
     [Route("api/[controller]/")]
     [ApiController]
-    public class detalleController : Controller
+    public class miscursosController : Controller
     {
-
         [HttpGet("{id}")]
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 
-        public ActionResult dtl(int id)
+        public ActionResult miscursos(int id)
         {
             using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
             {
-                var datos = db.Detalles.Where(g => g.IdCompra == id).Select(g => new { Nombre = g.IdCompraNavigation.IdEstudianteNavigation.IdUsuarioNavigation.Nombre + " " + g.IdCompraNavigation.IdEstudianteNavigation.IdUsuarioNavigation.Apellido, Nit = g.IdCompraNavigation.IdEstudianteNavigation.Nit, Fecha = g.IdCompraNavigation.Fecha, Curso = g.CodCursoNavigation.Nombre, Precio = g.CodCursoNavigation.Costo * 1.20 }).ToList();
+                var datos = db.Detalles.Where(g => g.IdCompraNavigation.IdEstudiante == id).Select(g => new { IdCurso=g.CodCurso,Nombre = g.CodCursoNavigation.Nombre, Descripcion = g.CodCursoNavigation.Descripcion, IdInstructor=g.CodCursoNavigation.IdInstructorNavigation.UsuarioNavigation.Nombre , Lecciones = g.CodCursoNavigation.Leccions.Count(),Duracion=g.CodCursoNavigation.Duracion}).ToList();
 
                 return Ok(datos);
             }

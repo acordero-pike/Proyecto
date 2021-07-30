@@ -5,26 +5,32 @@ prearray.forEach( ar =>  {  token =ar.token})
 
   const myHeaders = new Headers();
 myHeaders.append('Authorization', `Bearer ${token}  `);
-myHeaders.append('Content-Type', 'application/json');  
- 
-const url  = `https://localhost:5001/api/cursos`
+myHeaders.append('Content-Type', 'application/json'); 
+
+const url  = `https://localhost:5001/api/cursos/`
 const obtenerestudiantes = async () => {
-    return fetch(url, {
-        method: "GET"
-       ,headers:myHeaders,
-      }).then(response => {
-  
-        if( !response.ok ){
-    
-            catchError( response );
-    
-        } else {
-    
-         return response.json();
-    
-        }
-    
-    }).catch( catchError )
+     
+        let id = null;
+        prearray = JSON.parse( localStorage.getItem('Llave') ) || []  ;
+   
+        prearray.forEach( ar =>  {  id =ar.id})
+        return fetch(url+id, {
+            method: "GET"
+           ,headers:myHeaders,
+          }).then(response => {
+      
+            if( !response.ok ){
+        
+                catchError( response );
+        
+            } else {
+        
+             return response.json();
+        
+            }
+        
+        }).catch( catchError )
+        
 }
 
 
@@ -33,12 +39,13 @@ const obtenerestudiantes = async () => {
 
         const Estudiantes = await obtenerestudiantes();
         
+      if (Estudiantes.length>0)
+      {
         Estudiantes.forEach( est => {
-            const { idCurso,nombre,descripcion,cantidad  } = est;
+            const { idCurso,nombre,descripcion,cantidad,costo ,gan } = est;
             const row = document.createElement('tr');
 
-           if (cantidad>0)
-           {
+           
             row.innerHTML += `
             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
             <p class="text-sm leading-5 font-medium text-gray-700 text-lg  font-bold"> ${nombre} </p>
@@ -50,40 +57,37 @@ const obtenerestudiantes = async () => {
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 ">
                     <p class="text-gray-700">${cantidad}</p>
                 </td>
-               
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5">
-                <a href="inscritos.html?id=${idCurso}" class="text-teal-600 hover:text-teal-900 mr-5"><button  >Ver Alumnos</button></a>
-                </td>
-            `;
-
-           }else
-           {
-            row.innerHTML += `
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-            <p class="text-sm leading-5 font-medium text-gray-700 text-lg  font-bold"> ${nombre} </p>
-            </td>
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                   
-                    <p class="text-sm leading-10 text-gray-700"> ${descripcion} </p>
-                </td>
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 ">
-                    <p class="text-gray-700">${cantidad}</p>
+                <p class="text-gray-700">Q.${costo/1.2}</p>
+            </td>
+                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 ">
+                    <p class="text-gray-700">Q.${gan}</p>
                 </td>
-               
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5">
-                    <a href="inscritos.html?id=${idCurso}" class="text-teal-600 hover:text-teal-900 mr-5"><button disabled>Ver Alumnos</button></a>
-                </td>
+                
             `;
 
-           }
+             
             listado.appendChild(row);
         })
+      }else{
+        const row = document.createElement('tr');
+
+          
+        row.innerHTML += `
+        <td colspan="5" style="text-align: center;" class="px-6 py-4 whitespace-no-wrap border-b border-gray-200"> Sin Resultados</td>
+        
+        `;
+
+       
+        listado.appendChild(row);
+      }
     }
 
 
     function catchError( error ,msj){
 
         console.log( error.status );
+         
         if (msj==null && error.status==401)
         {
             msj="Algo Salio Mal... ,No tiene permitido el uso de este Recurso";
