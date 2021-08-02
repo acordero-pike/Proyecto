@@ -21,6 +21,10 @@
    <link href="../css/custom.css"   rel="stylesheet"></link>
   
    <script src="../scripts/EstudianteController/permisoest.js"></script>
+   <script src="../VerLeccionServ.js"></script>
+   <script src="../scripts/VerLeccion.js"></script>
+   <script src="../scripts/globals.js"></script>
+   
     <title>Curso-Lecciones </title>
   </head>
   <body>
@@ -29,8 +33,10 @@
        
     </header> 
        <br>
-        <div class="principal_adaptable_float"><iframe src="https://www.youtube.com/embed/L1oMLsiMusQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-        <div class="lateral_adaptable_float">lista</div>
+        <div id ="video" class="principal_adaptable_float"></div>
+        <div id="cardList" class="lateral_adaptable_float">    
+      </div>
+        
         <div class="pie_adaptable_float">Comentarios </div>
        
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
