@@ -16,7 +16,7 @@ namespace APIREST.Controllers
             using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
             {
                 var leccion = (from d in db.Leccions
-                               where d.IdLeccion == id
+                               where d.IdCurso == id
                                select d).ToList();
 
                 return Ok(leccion);
