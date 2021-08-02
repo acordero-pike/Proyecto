@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,7 @@ namespace APIREST.Controllers
     //Debora 
     [Route("api/[controller]")]
     [ApiController]
-
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class CompraDetalleController : ControllerBase
     {
         [HttpPost]
@@ -19,18 +21,13 @@ namespace APIREST.Controllers
             {
 
                 Models.Detalle detalle = new Models.Detalle();
-                Models.Compra compra = new Models.Compra();
-
-                db.Compras.Add(compra);
-                db.SaveChanges();
+                 
 
                 detalle.CodCurso = modelo.CodCurso;
                 detalle.Precio = modelo.Precio;
-                detalle.IdCompra = compra.IdCompra;
-                compra.IdEstudiante = modelo.IdCompraNavigation.IdEstudiante;
-                compra.Fecha = modelo.IdCompraNavigation.Fecha;
-                compra.Total = modelo.IdCompraNavigation.Total;
-
+                detalle.IdCompra = modelo.IdCompra;
+                
+                
 
 
                 db.Detalles.Add(detalle);

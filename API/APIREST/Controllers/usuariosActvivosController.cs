@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,7 @@ namespace APIREST.Controllers
     public class usuariosActvivosController : ControllerBase
     {
         [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public ActionResult Post([FromBody] Models.Usuario modelo)
         {
             using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
@@ -24,5 +27,16 @@ namespace APIREST.Controllers
             }
             return Ok("Usuario activo");
         }
+ 
+        [HttpGet("{id}")]
+        public ActionResult Get(int id)
+        {
+            using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
+            {
+                var usuario = db.Estudiantes.Where(g => g.IdEstudianes == id).Select(g => new { Nombre= g.IdUsuarioNavigation.Nombre+ g.IdUsuarioNavigation.Apellido, Nit=g.Nit }).ToList();
+                return Ok(usuario);
+            }
+        }
+
     }
 }

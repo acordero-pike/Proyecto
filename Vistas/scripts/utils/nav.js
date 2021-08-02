@@ -108,6 +108,7 @@ if (Rol=="Instructor")
               </tbody>
           </table>
                               <a href="#" id="vaciar-carrito" class="button u-full-width">Vaciar Carrito</a>
+                              <a href="Factura.html" id="pago" class="button u-full-width" >Pagar</a>
                       </div>
               </li>
           </ul>
@@ -119,6 +120,8 @@ if (Rol=="Instructor")
     </div>
   </nav>
 `;
+
+
   }
   else
   {
@@ -159,6 +162,10 @@ if (Rol=="Instructor")
       if (conf)
       {
   localStorage.removeItem('Llave');
+  if(Rol=="Estudiante")
+  {
+    eliminarlocal()
+  }
   location.reload();
       }
       else{
@@ -188,12 +195,10 @@ if (Rol=="Instructor")
           <a class="nav-link" href="../pages/Home.html">Cursos</a>
       
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">acerca de </a>
-        </li>
+     
       </ul>
       <div class="navbar-nav" id="logg">
-   <a class="nav-link"  style="color:white ;" href="../pages/Login.html">Login </a>
+   <a class="nav-link"  style="color:white ;" href="../pages/Login.html?#">Login </a>
 <a class="nav-link"  style="color:white ;"   href="../pages/userRegister.html">singup </a>
     </div>
   </div>
@@ -216,3 +221,8 @@ if (Rol=="Instructor")
 
 
 })
+
+function eliminarlocal() {
+  localStorage.removeItem('carrito');
+ 
+}

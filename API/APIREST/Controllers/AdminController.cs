@@ -25,6 +25,7 @@ namespace APIREST.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public ActionResult traercuros(int id)
         {
             using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())

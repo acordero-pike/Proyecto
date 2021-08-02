@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -33,7 +34,7 @@ namespace APIREST.Controllers
         }
 
 
-        [Authorize]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet]
         public ActionResult Get()
         {
@@ -46,6 +47,7 @@ namespace APIREST.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public ActionResult GetUsuario(int id)
         {
             using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
@@ -106,14 +108,7 @@ namespace APIREST.Controllers
 
             }
         }
-        [HttpGet("{token}")]
-        public ActionResult desce(string token)
-        {
-            var tk = new JwtSecurityTokenHandler().ReadToken(token);
-
-            return Ok(tk);
-        }
-
+    
 
 
 
