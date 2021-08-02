@@ -1,4 +1,10 @@
+ prearray = JSON.parse( localStorage.getItem('Llave') ) || []  ;
+prearray.forEach( ar =>  {  token =ar.token})
 
+  const myHeaders = new Headers();
+
+myHeaders.append('Authorization', `Bearer ${token}  `);
+myHeaders.append('Content-Type', 'application/json');  
 function getParameterByName(name) {
   name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
   var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -32,7 +38,10 @@ let lecciones = [];
 
     const url = `https://localhost:5001/api/ListaLecciones/${idCurso}`;
 
-    await fetch(url)
+    await fetch(url,{
+      method: "GET",
+      headers:myHeaders,
+    })
     .then(respuesta => respuesta.json())
     .then(resultado => {
         console.log(resultado);
