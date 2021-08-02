@@ -11,11 +11,12 @@ namespace APIREST.Controllers
     //Albin
     [Route("api/[controller]/")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class compraController : Controller
     {
 
         [HttpGet("{id}")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+      
 
         public ActionResult crmp(int id)
         {
@@ -27,7 +28,34 @@ namespace APIREST.Controllers
             }
         }
 
+        [HttpPost]
 
+        public ActionResult Post([FromBody] Models.Compra modelo)
+        {
+             
+            using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
+            {
+
+                 
+                Models.Compra compra = new Models.Compra();
+ 
+                
+
+                 
+                compra.IdEstudiante = modelo.IdEstudiante;
+                compra.Fecha = System.DateTime.Now;
+                compra.Total = modelo.Total;
+
+
+
+                db.Compras.Add(compra);
+                db.SaveChanges();
+              var  x = from a in db.Compras select a.IdCompra;
+                return Ok(x.Max());
+            }
+           
+            
+        }
 
     }
 }

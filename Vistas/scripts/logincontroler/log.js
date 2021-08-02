@@ -30,7 +30,16 @@ fetch(url)
             document.querySelector('#error').innerHTML=""
            },3000)
            return;
-        } else  {
+        } else if(status === "701")
+        {
+          document.querySelector('#error').innerHTML='Acceso incorrecto El usuario esta inactivo , contacte con el Administrador para solucionar su problema'
+          setTimeout(() => {
+           document.querySelector('#error').innerHTML=""
+          },3000)
+          return;
+        }       
+       
+        else  {
            const { 0: id} = resultado;  
  
         prearray= [id] ;

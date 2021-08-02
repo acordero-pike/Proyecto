@@ -16,10 +16,23 @@ window.onload = () => {
 
 let name=null;
 const CursoService = {
-    getCursos() {
-      return fetch(requestUrl, {
-        method: "GET",
-      }).then((response) => response.json());
+  getCursos() {
+    return fetch(requestUrl, {
+      method: "GET"
+       
+    }).then(response => {
+      if( !response.ok ){
+    
+        catchError( response );
+
+    } else {
+      
+
+     return response.json();
+
+    }
+
+}).catch( catchError )
     }
 }
  
@@ -92,8 +105,8 @@ const setCursos = async () => {
        
       const card = document.createElement("div");
       card.classList.add("four" ,    "columns")
-     
-    if(curso.nombre.search(name) != -1)
+     const nas= curso.nombre.toLowerCase();
+    if(nas.search(name.toLowerCase()) != -1)
     {
       card.innerHTML = `
       
@@ -106,8 +119,8 @@ const setCursos = async () => {
       <p> Autor : ${curso.idInstructor} </p>
       <img src="../img/estrellas.png">
                           <p >  Costo: Q.${curso.costo} </p>
-                    <a href="#" class="u-full-width button-primary button input agregar-carrito" data-id="1">Agregar Al Carrito</a>
-                 </div>
+                          <a  class="u-full-width button-primary button input agregar-carrito" data-id="1" href="../pages/Login.html">Agregar Al Carrito</a>
+                          </div>
               </div>
             
         `;
@@ -148,4 +161,19 @@ if(x==0)
   };
 
 
- 
+  function catchError( error ,msj){
+
+    console.log( error.status );
+     
+    if (msj==null && error.status==401)
+    {
+        msj="Algo Salio Mal... ,No tiene permitido el uso de este Recurso";
+    }
+    else if(msj==null)
+    {
+       msj="Algo Salio Mal...";
+    }
+  //   
+  window.location.href=`error.html?id=${msj}`;
+  
+  }

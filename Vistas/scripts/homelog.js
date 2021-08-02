@@ -5,21 +5,31 @@ window.onload = () => {
   const search = document.querySelector("#buscador");
   const btns = document.querySelector("#submit-buscador");
  const listaCursos =document.querySelector('#lista-cursos');
- 
+ const pago = document.querySelector("#pago");
  //Débora Chacach
 //variables
 const carrito=document.querySelector('#carrito');
+if (articulosCarrito.length>0)
+{
+  console.log(1)
+  pago.hidden  =false;
+}else{
+  console.log(2)
+  pago.hidden  =true;
+}
 
-
+ 
 const vaciarCarritoBtn=document.querySelector('#vaciar-carrito');
 
  //Eliminar cursos del carrito
  carrito.addEventListener('click', eliminarCurso);
    
+//muestra los cursos de localStorage
 
  //vaciar carrito
  vaciarCarritoBtn.addEventListener('click',()=>{
      articulosCarrito=[]; //resetea el arreglo
+     eliminarlocal();
      limpiarHTML();//eliminar todo html
 
  })
@@ -61,6 +71,11 @@ const CursoService = {
   
   
 document.addEventListener("DOMContentLoaded", () => setCursos());
+document.addEventListener('DOMContentLoaded',() =>{
+  articulosCarrito=JSON.parse(localStorage.getItem('carrito'))||[];
+  carritoHTML();
+
+})
 
 const setCursos = async () => {
   const tit = document.createElement("h1");
@@ -129,7 +144,8 @@ const setCursos = async () => {
       const card = document.createElement("div");
       card.classList.add("four" ,    "columns")
      
-    if(curso.nombre.search(name) != -1)
+      const nas= curso.nombre.toLowerCase();
+      if(nas.search(name.toLowerCase()) != -1)
     {
       card.innerHTML = `
       
@@ -188,7 +204,11 @@ if(x==0)
 
 //const listaCursos=document.querySelector('#lista-cursos');
 let articulosCarrito=[];
-
+document.addEventListener('DOMContentLoaded', () => {
+  articulosCarrito = JSON.parse( localStorage.getItem('carrito') ) || []  ;
+  
+  carritoHTML();
+});
 
 
 
@@ -204,17 +224,35 @@ function agregarCurso(e){
       
       mensaje=1;
       leerDatosCurso(crusoSeleccionado);
+      if (articulosCarrito.length>0)
+      {
+        console.log(1)
+        pago.hidden  =false;
+      }else{
+        console.log(2)
+        pago.hidden  =true;
+      }
 
     }
     
 }
 //elimina un curso del carrito
 function eliminarCurso(e){
+ 
     if(e.target.classList.contains('borrar-curso')){
         const cursoId=e.target.getAttribute('data-id');
         //elimina del arreglo de articulos del carrito
         articulosCarrito=articulosCarrito.filter(curso=>curso.id !== cursoId);
+        sincronizarStorage();
         carritoHTML(); //iterar sobre el carrito y muestra html
+        if (articulosCarrito.length>0)
+        {
+          console.log(1)
+          pago.hidden  =false;
+        }else{
+          console.log(2)
+          pago.hidden  =true;
+        }
     }
 
 }
@@ -251,6 +289,7 @@ if(existe){
   
     articulosCarrito=[...articulosCarrito, infoCurso];
     console.log(articulosCarrito);
+    sincronizarStorage();
     carritoHTML();
     
 
@@ -283,10 +322,17 @@ function carritoHTML(){
         `;
         //Agrega el HTML del carrito en el tbody
         contenedorCarrito.appendChild(row);
+          //Agregar el carrito de compras al storage
+   
     });
+    sincronizarStorage();
 
 
 }
+function sincronizarStorage(){
+  localStorage.setItem('carrito',JSON.stringify(articulosCarrito));
+}
+
 
 function limpiarHTML(){
     //contenedorCarrito.innerHTML='';
@@ -312,4 +358,16 @@ function catchError( error ,msj){
 //   
 window.location.href=`error.html?id=${msj}`;
 
+}
+
+
+function sincronizarStorage() {
+  localStorage.setItem('carrito', JSON.stringify(articulosCarrito));
+}
+
+
+
+   function eliminarlocal() {
+  localStorage.removeItem('carrito');
+ 
 }

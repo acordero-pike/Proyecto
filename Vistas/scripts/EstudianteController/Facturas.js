@@ -45,11 +45,11 @@ const obtenerestudiantes = async () => {
           
             row.innerHTML += `
             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-            <p class="text-sm leading-5 font-medium text-gray-700 text-lg  font-bold"> ${fecha} </p>
+            <p class="text-sm leading-5 font-medium text-gray-700 text-lg  font-bold"> ${fecha.split("T")[0]} </p>
             </td>
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                    
-                    <p class="text-sm leading-10 text-gray-700"> ${total} </p>
+                    <p class="text-sm leading-10 text-gray-700"> Q.${total} </p>
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 ">
                     <p class="text-gray-700">${cantidad}</p>

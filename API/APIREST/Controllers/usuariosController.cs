@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -33,7 +34,7 @@ namespace APIREST.Controllers
         }
 
 
-        [Authorize]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet]
         public ActionResult Get()
         {
@@ -46,6 +47,7 @@ namespace APIREST.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public ActionResult GetUsuario(int id)
         {
             using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
@@ -70,6 +72,7 @@ namespace APIREST.Controllers
                 string rol = null;
 
                 var query = db.Usuarios.Where(a => a.Correo == Correo && a.Contraseña == Contraseña).Select(g => g.IdUsuario);
+                var val = db.Usuarios.Where(a => a.Correo == Correo && a.Contraseña == Contraseña).Select(g => g.Status);
 
                 if (query.Count() < 1)
                 {
@@ -79,6 +82,11 @@ namespace APIREST.Controllers
                 }
                 else
                 {
+                    if(val.First()==true)
+                    {
+
+                    
+
                     var x = from a in db.Estudiantes where a.IdUsuario == query.First() select a.IdEstudianes;
                     var y = from a in db.DatosInstructors where a.Usuario == query.First() select a.IdInstructor;
 
@@ -98,22 +106,21 @@ namespace APIREST.Controllers
                         id = query.First();
                     }
 
+                        return BuildToken(Correo, Contraseña, rol, id);
+                    }
+                    else
+                    {
+                        var query1 = new { status = "701" };
+                        // creamos un listado de peticion
+                        return Ok(query1);
+                    }
+               
+               
 
                 }
-               
-                return BuildToken(Correo, Contraseña,rol,id);
-
-
             }
         }
-        [HttpGet("{token}")]
-        public ActionResult desce(string token)
-        {
-            var tk = new JwtSecurityTokenHandler().ReadToken(token);
-
-            return Ok(tk);
-        }
-
+    
 
 
 

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <title>Registro Instrictores</title>
+</head>
+<body>
+    <div class="container-fluid px-1 py-5 mx-auto">
+        <div class="row d-flex justify-content-center">
+            <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+                <h3>Registro Instructores</h3>
+                <div class="card">
+                    <h5 class="text-center mb-4">Datos Instructor</h5>
+                    <form class="form-card" id="form" method="POST">
+                        <div class="row justify-content-between text-left">
+                            <div class="form-group col-sm-6 flex-column d-flex"> 
+                                <label class="form-control-label px-3">Nombre<span class="text-danger">*</span></label> 
+                                <input type="text" id="nombre" name="apellido" placeholder=""> 
+                            </div>
+                            <div class="form-group col-sm-6 flex-column d-flex"> 
+                                <label class="form-control-label px-3">Apellido<span class="text-danger"> *</span></label> 
+                                <input type="text" id="apellido" name="apellido" placeholder=""> 
+                            </div>
+                        </div>
+                        <div class="row justify-content-between text-left">
+                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Teléfono<span class="text-danger"> *</span></label> 
+                                <input type="text" id="telefono" name="telefono" placeholder=""> 
+                            </div>
+                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Correo<span class="text-danger"> *</span></label>
+                             <input type="text" id="email" name="email" placeholder="" > 
+                            </div>
+                        </div>
+                        <div class="row justify-content-between text-left">
+                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Contraseña<span class="text-danger"> *</span></label>
+                            <input type="password" id="pass" name="pass" placeholder=""> </div>
+                            <div class="form-group col-sm-6 flex-column d-flex">
+                                <label class="form-control-label px-3">Número de cuenta<span class="text-danger"> *</span></label> 
+                                <input type="text" id="numeroCuenta" name="numeroCuenta" placeholder=""> 
+                               </div>
+                        </div>
+                        <div class="row justify-content-between text-left">
+                            <div class="form-group col-sm-6 flex-column d-flex"> 
+                                <label class="form-control-label px-3">Estudios<span class="text-danger"> *</span></label>
+                                 <input type="text" id="estudios" name="Estudios" placeholder=""> 
+                                </div>
+                            <div class="form-group col-sm-6 flex-column d-flex">
+                                 <label class="form-control-label px-3">Certificaciones<span class="text-danger"> *</span></label> 
+                                 <input type="text" id="certificaciones" name="certificaciones" placeholder=""> 
+                                </div>
+                            </div>
+                            <div class="row justify-content-between text-left">
+                                <div class="form-group col-sm-6 flex-column d-flex"> 
+                                    <label class="form-control-label px-3">Experiencia Laboral<span class="text-danger"> *</span></label>
+                                     <input type="text" id="experienciaLab" name="experienciaLab" placeholder=""> 
+                                    </div>
+                                </div>
+                        <div class="row justify-content-end">
+                           <div class="form-group col-sm-6"> <button type="submit" class="btn-block btn-primary">Registrar</button> </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../scripts/usersController/registroInstructor.js" type="module"></script>
+    <script src="../scripts/utils/global.js"></script>
+</body>
+</html>
