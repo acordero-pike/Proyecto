@@ -20,13 +20,15 @@ namespace APIREST.Migrations
                 .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-<<<<<<< HEAD
             modelBuilder.Entity("APIREST.Models.Comentario", b =>
                 {
                     b.Property<int>("IdComentario")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("IdCurso")
+                        .HasColumnType("int");
 
                     b.Property<int>("Leccion")
                         .HasColumnType("int");
@@ -42,8 +44,6 @@ namespace APIREST.Migrations
                     b.ToTable("Comentarios");
                 });
 
-=======
->>>>>>> c599edf92c8282ea0294606f0ababe80bf8cddda
             modelBuilder.Entity("APIREST.Models.Compra", b =>
                 {
                     b.Property<int>("IdCompra")

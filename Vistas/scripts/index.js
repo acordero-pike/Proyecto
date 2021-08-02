@@ -82,7 +82,9 @@ const insertCursoIntoDom = (curso, index) => {
             
             <button onclick="openModalEdit(${index})" class="btn btn-primary"> Editar </button>
             <button onclick="deleteCurso(${index})" class="btn btn-danger"> Eliminar </button>
-         <a href="Lecciones.html?id=${curso.idCurso}" class="text-teal-600 hover:text-teal-900 mr-5"><button> Agregar Lecciones</button> </a>
+        <a href="Lecciones.html?id=${curso.idCurso}" class="text-teal-600 hover:text-teal-900 mr-5"><button> Agregar Lecciones</button> </a>
+        <a href="VerListaLeccionesInstructor.html?id=${curso.idCurso}" class="text-teal-600 hover:text-teal-900 mr-5"><button> Ver Curso </button> </a>
+
 
           </div>
         </div>

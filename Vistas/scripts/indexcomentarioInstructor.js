@@ -52,6 +52,10 @@ const insertComentarioIntoDom = (comm, index) => {
             <h5 class="card-title" hidden>Leccion: ${comm.leccion}</h5>
             <h5 class="card-title" >Curso: ${comm.idCurso}</h5>
 
+
+
+            
+            <button onclick="location.href='../pages/Respuestacomentario.html'"class="btn btn-primary">Responder Comentario</button>
           </div>
         </div>
     `;

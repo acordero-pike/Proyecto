@@ -12,11 +12,11 @@ namespace APIREST.Controllers
     public class ComentarioController : ControllerBase
     {
         [HttpGet]
-        public ActionResult Get()
+        public ActionResult Get(int IdCurso)
         {
             using (Models.ProyectocrsContext db = new Models.ProyectocrsContext())
             {
-                var comentario = (from d in db.Comentarios
+                var comentario = (from d in db.Comentarios.Where(b=>b.IdCurso==IdCurso)
                                 select d).ToList();
 
                 return Ok(comentario);
@@ -33,6 +33,7 @@ namespace APIREST.Controllers
                 com.Pregunta = modelo.Pregunta;
                 com.Leccion = modelo.Leccion;
                 com.Respuesta = "Sin Respuesta";
+                com.IdCurso = modelo.IdCurso;
 
                 db.Comentarios.Add(com);
                 db.SaveChanges();

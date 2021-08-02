@@ -14,7 +14,9 @@ namespace APIREST.Migrations
                     IdComentario = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Pregunta = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Leccion = table.Column<int>(type: "int", nullable: false)
+                    Respuesta = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Leccion = table.Column<int>(type: "int", nullable: false),
+                    IdCurso = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
