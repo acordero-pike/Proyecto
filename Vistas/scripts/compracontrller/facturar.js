@@ -53,9 +53,20 @@ const compraservice = {
   },
 };
 
+
 function catchError( error ,msj){
 
   console.log( error.status );
    
+  if (msj==null && error.status==401)
+  {
+      msj="Algo Salio Mal... ,No tiene permitido el uso de este Recurso";
+  }
+  else if(msj==null)
+  {
+     msj="Algo Salio Mal...";
+  }
+//   
+window.location.href=`error.html?id=${msj}`;
 
 }

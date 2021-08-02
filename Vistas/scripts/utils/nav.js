@@ -48,8 +48,8 @@ if (Rol=="Instructor")
             
           </ul>
           <div class="navbar-nav" id="logg">
-        <a class="nav-link"  style="color:white ;" href="../pages/updateUser.html">${nombre}</a>
-    <a class="nav-link"  style="color:white ;" id="logoff" >LogOff</a>
+          <a class="nav-link"  style="color:white ;" href="../pages/actualizarInstructor.html">${nombre}</a>
+              <a class="nav-link"  style="color:white ;" id="logoff" >LogOff</a>
         </div>
       </div>
       </div>
@@ -113,7 +113,7 @@ if (Rol=="Instructor")
               </li>
           </ul>
        
-      <a class="nav-link"  style="color:white ;" href="../pages/updateUser.html">${nombre}</a>
+      <a class="nav-link"  style="color:white ;"href="../pages/actualizarEstudiante.html">${nombre}</a>
   <a class="nav-link"  style="color:white ;" id="logoff" >LogOff</a>
       </div>
     </div>
@@ -147,7 +147,7 @@ if (Rol=="Instructor")
           
         </ul>
         <div class="navbar-nav" id="logg">
-      <a class="nav-link"  style="color:white ;" href="../pages/updateUser.html">${nombre}</a>
+        <a class="nav-link"  style="color:white ;" href="../pages/updateUser.html">${nombre}</a>
   <a class="nav-link"  style="color:white ;" id="logoff" >LogOff</a>
       </div>
     </div>
@@ -199,7 +199,7 @@ if (Rol=="Instructor")
       </ul>
       <div class="navbar-nav" id="logg">
    <a class="nav-link"  style="color:white ;" href="../pages/Login.html?#">Login </a>
-<a class="nav-link"  style="color:white ;"   href="../pages/userRegister.html">singup </a>
+<a class="nav-link"  style="color:white ;"   href="../pages/elegirModo.html">singup </a>
     </div>
   </div>
   </div>

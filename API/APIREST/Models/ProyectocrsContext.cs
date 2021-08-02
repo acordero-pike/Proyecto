@@ -18,7 +18,6 @@ namespace APIREST.Models
         }
 
         public virtual DbSet<Compra> Compras { get; set; }
-        public virtual DbSet<CuentaBancarium> CuentaBancaria { get; set; }
         public virtual DbSet<Curso> Cursos { get; set; }
         public virtual DbSet<DatosInstructor> DatosInstructors { get; set; }
         public virtual DbSet<Detalle> Detalles { get; set; }
@@ -56,16 +55,6 @@ namespace APIREST.Models
                     .WithMany(p => p.Compras)
                     .HasForeignKey(d => d.IdEstudiante)
                     .HasConstraintName("FK__Compra__idEstudi__06CD04F7");
-            });
-
-            modelBuilder.Entity<CuentaBancarium>(entity =>
-            {
-                entity.HasKey(e => e.IdCuenta)
-                    .HasName("PK__CuentaBa__BBC6DF32B8ED25D5");
-
-                entity.Property(e => e.IdCuenta)
-                    .ValueGeneratedNever()
-                    .HasColumnName("idCuenta");
             });
 
             modelBuilder.Entity<Curso>(entity =>

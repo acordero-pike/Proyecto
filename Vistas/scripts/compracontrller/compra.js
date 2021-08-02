@@ -120,12 +120,23 @@ prearray = JSON.parse( localStorage.getItem('Llave') ) || []  ;
         }
 
         
-    function catchError( error ,msj){
+  
+        function catchError( error ,msj){
 
-        console.log( error.status );
-       
-      
-      }
+            console.log( error.status );
+             
+            if (msj==null && error.status==401)
+            {
+                msj="Algo Salio Mal... ,No tiene permitido el uso de este Recurso";
+            }
+            else if(msj==null)
+            {
+               msj="Algo Salio Mal...";
+            }
+          //   
+          window.location.href=`error.html?id=${msj}`;
+          
+          }
 function getcompra() {
     const f = fecha.getFullYear() + '-'+ fecha.getMonth() +'-'+fecha.getDay()
     const data ={
