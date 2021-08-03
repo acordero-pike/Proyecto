@@ -1,4 +1,4 @@
-const URLCom = "https://localhost:5001/api/Comentario"
+const URLCom = "https://25.18.168.1/api/Comentario"
 const headers = {
     'Accept' : "application/json",
     "Content-Type": "application/json",

@@ -36,7 +36,7 @@ let lecciones = [];
   async function obtenerLecciones(){
 
 
-    const url = `https://localhost:5001/api/ListaLecciones/${idCurso}`;
+    const url = `https://25.18.168.1/api/ListaLecciones/${idCurso}`;
 
     await fetch(url,{
       method: "GET",

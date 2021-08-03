@@ -1,4 +1,4 @@
-const url = "https://localhost:5001/api/Leccion/"
+const url = "https://25.18.168.1/api/Leccion/"
  
  
 prearray = JSON.parse( localStorage.getItem('Llave') ) || []  ;

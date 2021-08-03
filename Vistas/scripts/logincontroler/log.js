@@ -11,7 +11,7 @@ const us = document.querySelector("#user");
 const con = document.querySelector("#cont");
  
 
-let url = `https://localhost:5001/api/Usuarios/${us.value},${con.value}`;
+let url = `https://25.18.168.1/api/Usuarios/${us.value},${con.value}`;
 
 fetch(url)
       .then(respuesta => respuesta.json()

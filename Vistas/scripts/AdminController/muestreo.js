@@ -10,7 +10,7 @@ myHeaders.append('Content-Type', 'application/json');
 document.addEventListener('DOMContentLoaded', mostrar);
 
 
-const url  = `https://localhost:5001/api/Admin`
+const url  = `https://25.18.168.1/api/Admin`
 const obtenerestudiantes = async () => {
     return fetch(url, {
         method: "GET"

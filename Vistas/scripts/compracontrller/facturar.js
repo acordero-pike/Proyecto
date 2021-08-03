@@ -1,5 +1,5 @@
-const url = "https://localhost:5001/api/compra"
-const URLD = "https://localhost:5001/api/CompraDetalle"
+const url = "https://25.18.168.1/api/compra"
+const URLD = "https://25.18.168.1/api/CompraDetalle"
  
 prearray = JSON.parse( localStorage.getItem('Llave') ) || []  ;
 prearray.forEach( ar =>  {  token =ar.token})

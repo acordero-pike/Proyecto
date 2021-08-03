@@ -7,7 +7,7 @@ prearray.forEach( ar =>  {  token =ar.token})
 myHeaders.append('Authorization', `Bearer ${token}  `);
 myHeaders.append('Content-Type', 'application/json');  
  
-const url  = `https://localhost:5001/api/cursos`
+const url  = `https://25.18.168.1/api/cursos`
 const obtenerestudiantes = async () => {
     return fetch(url, {
         method: "GET"

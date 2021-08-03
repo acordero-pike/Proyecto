@@ -8,7 +8,7 @@ prearray = JSON.parse( localStorage.getItem('Llave') ) || []  ;
  prearray.forEach( ar =>  {    id= ar.id})
  
   
-    const urlc =" https://localhost:5001/api/usuariosActvivos/"+id
+    const urlc =" https://25.18.168.1/api/usuariosActvivos/"+id
     let articulosCarrito=[];
    
     document.addEventListener('DOMContentLoaded', async () => {

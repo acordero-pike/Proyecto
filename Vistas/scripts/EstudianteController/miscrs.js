@@ -1,6 +1,6 @@
 const cardListElement = document.getElementById("cardList");
 document.addEventListener("DOMContentLoaded", () => setCursos());
-const url="https://localhost:5001/api/miscursos/"
+const url="https://25.18.168.1/api/miscursos/"
 const insertCursoIntoDom = (curso, index) => {
  console.log(curso)
     const card = `

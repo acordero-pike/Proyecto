@@ -6,7 +6,7 @@ prearray.forEach( ar =>  {  token =ar.token})
 myHeaders.append('Authorization', `Bearer ${token}  `);
 myHeaders.append('Content-Type', 'application/json'); 
  
-    const urlc =" https://localhost:5001/api/AdminCrs/"
+    const urlc =" https://25.18.168.1/api/AdminCrs/"
 let idCliente=null;
 
 document.addEventListener('DOMContentLoaded', async () => {

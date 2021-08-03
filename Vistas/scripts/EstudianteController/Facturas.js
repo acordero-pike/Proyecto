@@ -8,7 +8,7 @@ myHeaders.append('Content-Type', 'application/json');
 document.addEventListener('DOMContentLoaded', mostrar);
 prearray = JSON.parse( localStorage.getItem('Llave') ) || []  ;
 prearray.forEach( ar =>  {  id =ar.id})
-const url  = `https://localhost:5001/api/compra/`+id
+const url  = `https://25.18.168.1/api/compra/`+id
 const obtenerestudiantes = async () => {
      
         return fetch(url, {

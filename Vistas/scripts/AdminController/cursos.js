@@ -1,4 +1,4 @@
-const urlc =" https://localhost:5001/api/Admin/"
+const urlc =" https://25.18.168.1/api/Admin/"
 let idCliente=null;
 prearray = JSON.parse( localStorage.getItem('Llave') ) || []  ;
 prearray.forEach( ar =>  {  token =ar.token})
