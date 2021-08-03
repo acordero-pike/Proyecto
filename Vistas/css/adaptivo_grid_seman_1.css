@@ -21,7 +21,7 @@
     }
     .pie_adaptable_float {
       clear: both;
-      height: 25em;
+     padding:5em;
     }
   
   }
@@ -45,7 +45,7 @@
     }
     .pie_adaptable_float {
       clear: both;
-      height: 3em;
+     
     }
   }
   /* ancho menor o igual de 640px */
@@ -63,14 +63,14 @@
       height: 30em;
     }
     .pie_adaptable_float {
-      height: 3em;
+      
     }
   }
 
   .principal_adaptable_float{background-color: black;}
  
   .lateral_adaptable_float{background-color: rgb(206, 214, 214);}
-  .pie_adaptable_float{background-color: rgb(206, 214, 214);}
+  .pie_adaptable_float {   background-color: rgb(80 126 161 / 76%);}
 
  
  

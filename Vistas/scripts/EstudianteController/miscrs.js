@@ -60,8 +60,16 @@ const insertCursoIntoDom = (curso, index) => {
   let articulosCarrito=[];
    
   document.addEventListener('DOMContentLoaded', async () => {
+    const pago = document.querySelector("#pago");
       articulosCarrito = JSON.parse( localStorage.getItem('carrito') ) || []  ;
-
+      if (articulosCarrito.length>0)
+      {
+         
+        pago.hidden  =false;
+      }else{
+         
+        pago.hidden  =true;
+      }
       carritoHTML();
       
   });

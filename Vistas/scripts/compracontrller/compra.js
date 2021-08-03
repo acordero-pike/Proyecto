@@ -180,5 +180,9 @@ function getFormData() {
       })
 
       console.log(detalle)
+
+alert("Compra Realizada con Exito ");
+window.location.href="../pages/miscursos.html"
+      localStorage.removeItem('carrito');
     
       }

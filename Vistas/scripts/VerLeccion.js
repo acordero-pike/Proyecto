@@ -1,6 +1,6 @@
  prearray = JSON.parse( localStorage.getItem('Llave') ) || []  ;
 prearray.forEach( ar =>  {  token =ar.token})
-
+let leccome=null;
   const myHeaders = new Headers();
 
 myHeaders.append('Authorization', `Bearer ${token}  `);
@@ -71,7 +71,8 @@ function mostrarLecciones(lecciones) {
                 async function visualizarVideo(codigoVideo,idLeccion){
 
                   leccionEnProceso = idLeccion;
-                  
+                  leccome=idLeccion;
+                  setComentarios();
                   const visualizador = document.querySelector('#visualizador');
                   const contenedorVideo = document.querySelector('#video');
               

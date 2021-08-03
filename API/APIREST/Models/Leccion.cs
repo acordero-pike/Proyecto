@@ -7,6 +7,11 @@ namespace APIREST.Models
 {
     public partial class Leccion
     {
+        public Leccion()
+        {
+            Comentarios = new HashSet<Comentario>();
+        }
+
         public int IdLeccion { get; set; }
         public string Titulo { get; set; }
         public string Descripcion { get; set; }
@@ -15,5 +20,6 @@ namespace APIREST.Models
         public int? IdCurso { get; set; }
 
         public virtual Curso IdCursoNavigation { get; set; }
+        public virtual ICollection<Comentario> Comentarios { get; set; }
     }
 }

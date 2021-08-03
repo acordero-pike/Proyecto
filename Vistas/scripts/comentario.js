@@ -4,8 +4,9 @@ const headers = {
     "Content-Type": "application/json",
   };
   const ComentarioService = {
-    getComentarios(IdCurso) {
-      return fetch(`https://localhost:5001/api/Comentario?IdCurso=${IdCurso}`, {
+    getComentarios(sd) {
+      console.log(URLCom+'/'+sd)
+      return fetch(URLCom+'/'+sd, {
         method: "GET",
       }).then((response) => response.json());
     },
@@ -25,6 +26,7 @@ const headers = {
       }).then((response) => response.json());
     },
     guardarComentarios(body) {
+      console.log("guardando")
       return fetch(URLCom, {
         method: "POST",
         headers,

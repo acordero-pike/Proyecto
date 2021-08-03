@@ -17,6 +17,7 @@ namespace APIREST.Models
         {
         }
 
+        public virtual DbSet<Comentario> Comentarios { get; set; }
         public virtual DbSet<Compra> Compras { get; set; }
         public virtual DbSet<Curso> Cursos { get; set; }
         public virtual DbSet<DatosInstructor> DatosInstructors { get; set; }
@@ -24,21 +25,36 @@ namespace APIREST.Models
         public virtual DbSet<Estudiante> Estudiantes { get; set; }
         public virtual DbSet<Leccion> Leccions { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
-        public virtual DbSet<Comentario> Comentarios { get; set; }
-
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-DF943KT;Database=Proyectocrs;user=tito1;password=1234;Trusted_Connection=false;MultipleActiveResultSets=true");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-IFKEU1D\\SQLEXPRESS;Database=Proyectocrs;user=sa;password=albin123;Trusted_Connection=false;MultipleActiveResultSets=true");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+
+            modelBuilder.Entity<Comentario>(entity =>
+            {
+                entity.HasKey(e => e.IdComentario)
+                    .HasName("PK__Comentar__DDBEFBF903E90C70");
+
+                entity.ToTable("Comentario");
+
+                entity.Property(e => e.Pregunta).IsUnicode(false);
+
+                entity.Property(e => e.Respuesta).IsUnicode(false);
+
+                entity.HasOne(d => d.LeccionNavigation)
+                    .WithMany(p => p.Comentarios)
+                    .HasForeignKey(d => d.Leccion)
+                    .HasConstraintName("FK__Comentari__Lecci__3C34F16F");
+            });
 
             modelBuilder.Entity<Compra>(entity =>
             {

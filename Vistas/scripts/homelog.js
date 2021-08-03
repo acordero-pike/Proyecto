@@ -11,10 +11,10 @@ window.onload = () => {
 const carrito=document.querySelector('#carrito');
 if (articulosCarrito.length>0)
 {
-  console.log(1)
+   
   pago.hidden  =false;
 }else{
-  console.log(2)
+   
   pago.hidden  =true;
 }
 

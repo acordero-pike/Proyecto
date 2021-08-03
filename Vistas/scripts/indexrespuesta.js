@@ -3,7 +3,8 @@ const modalButton = document.getElementById("modalButton");
 const submitButton = document.getElementById("submitButton");
 const closeModalButton = document.getElementById("closeModalButton");
 const form = document.getElementById("form");
-
+const parametrosURL = new URLSearchParams(window.location.search);
+   const idcurs = parseInt( parametrosURL.get('id') );
 
 let currentComentario = null;
 let comentarios = [];
@@ -60,7 +61,7 @@ const insertComentarioIntoDom = (comm, index) => {
 
 const setComentarios = async () => {
   cardListElement.innerHTML = "";
-  const dataComentario = await ComentarioService.getComentarios();
+  const dataComentario = await ComentarioService.getComentarios(idcurs);
   comentarios = dataComentario;
   comentarios.forEach((comentario, index) => insertComentarioIntoDom(comentario, index));
 };
